@@ -23,7 +23,7 @@ public:
 
 class Virus: public Agent{
 public:
-    Virus(int nodeInd, Session& session);
+    Virus(int nodeInd, Session &session);
 
     virtual void act();
 private:
