@@ -1,14 +1,34 @@
-//
-// Created by spl211 on 02/11/2020.
-//
+#ifndef SESSION_H_
+#define SESSION_H_
 
-#ifndef SPL1_SESSION_H
-#define SPL1_SESSION_H
+#include <vector>
+#include <string>
+#include "Graph.h"
 
+class Agent;
 
-class Session {
-
+enum TreeType{
+  Cycle,
+  MaxRank,
+  Root
 };
 
+class Session{
+public:
+    Session(const std::string& path);
+    
+    void simulate();
+    void addAgent(const Agent& agent);
+    void setGraph(const Graph& graph);
+    
+    void enqueueInfected(int);
+    int dequeueInfected();
+    TreeType getTreeType() const;
+    
+private:
+    Graph g;
+    TreeType treeType;
+    std::vector<Agent*> agents;
+};
 
-#endif //SPL1_SESSION_H
+#endif

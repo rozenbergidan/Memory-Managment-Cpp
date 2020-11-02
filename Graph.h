@@ -1,14 +1,16 @@
-//
-// Created by spl211 on 02/11/2020.
-//
+#ifndef GRAPH_H_
+#define GRAPH_H_
 
-#ifndef SPL1_GRAPH_H
-#define SPL1_GRAPH_H
+#include <vector>
 
+class Graph{
+public:
+    Graph(std::vector<std::vector<int>> matrix);
 
-class Graph {
-
+    void infectNode(int nodeInd);
+    bool isInfected(int nodeInd);
+private:
+    std::vector<std::vector<int>> edges;
 };
 
-
-#endif //SPL1_GRAPH_H
+#endif

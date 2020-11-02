@@ -1,14 +1,33 @@
-//
-// Created by spl211 on 02/11/2020.
-//
+#ifndef AGENT_H_
+#define AGENT_H_
 
-#ifndef SPL1_AGENT_H
-#define SPL1_AGENT_H
+#include <vector>
+#include "Session.h"
 
+class Agent{
+public:
+    Agent(Session& session);
 
-class Agent {
+    virtual void act()=0;
+private:
+    Session& session;
+};
 
+class ContactTracer: public Agent{
+public:
+    ContactTracer(Session& session);
+
+    virtual void act();
 };
 
 
-#endif //SPL1_AGENT_H
+class Virus: public Agent{
+public:
+    Virus(int nodeInd, Session& session);
+
+    virtual void act();
+private:
+    const int nodeInd;
+};
+
+#endif
