@@ -20,7 +20,7 @@ public:
     ContactTracer(Session& session);
     //virtual ~ContactTracer();
     virtual void act();
-    virtual Agent* clone() const;
+    virtual ContactTracer* clone() const;
 };
 
 
@@ -29,7 +29,7 @@ public:
     Virus(int nodeInd, Session &session);
     //virtual ~Virus();
     virtual void act();
-    virtual Agent* clone() const;
+    virtual Virus* clone() const;
 
 private:
     const int nodeInd;
