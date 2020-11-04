@@ -6,5 +6,5 @@
 #include "Graph.h"
 using namespace std;
 
-Graph::Graph(vector <vector<int>> matrix) :edges(matrix){}
+Graph::Graph(vector <vector<int>> matrix) :edges(matrix){};
 

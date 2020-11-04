@@ -9,7 +9,8 @@ public:
     Agent(Session& session);
 
     virtual void act()=0;
-private:
+    virtual Agent* clone()=0;
+protected:
     Session& session;
 };
 
@@ -18,6 +19,7 @@ public:
     ContactTracer(Session& session);
 
     virtual void act();
+    virtual Agent* clone();
 };
 
 
@@ -26,6 +28,7 @@ public:
     Virus(int nodeInd, Session &session);
 
     virtual void act();
+    virtual Agent* clone();
 private:
     const int nodeInd;
 };

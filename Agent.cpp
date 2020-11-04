@@ -11,4 +11,14 @@ ContactTracer::ContactTracer(Session &session) : Agent(session){};
 
 Virus::Virus(int nodeInd, Session &session) : Agent(session), nodeInd(nodeInd) {};
 
+Agent * ContactTracer::clone(){
+    Agent *output=new ContactTracer(session);
+    return output;
+};
+
+Agent * Virus::clone(){
+    Agent *output=new Virus(nodeInd,session);
+    return output;
+};
+
 
