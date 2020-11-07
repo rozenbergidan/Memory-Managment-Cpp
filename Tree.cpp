@@ -29,6 +29,8 @@ int Tree::getNode() const {
 }
 
 //---------------------------------------CycleTree--------------------------------------------------------------
+CycleTree::CycleTree(int rootLabel, int currCycle): Tree(rootLabel), currCycle(currCycle){}
+
 const CycleTree& CycleTree::operator=(const CycleTree &other) {
     children = other.children;
     node = other.node;
@@ -110,28 +112,7 @@ RootTree* RootTree::clone() const {
 
 
 
-//std::vector<Tree*>* Tree::cloneChildren() const {
-//    std::vector<Tree*>* output = new vector<Tree*>(children);
-//    return output;
-//}
-//
-//CycleTree* CycleTree::clone() const{
-//    CycleTree* output = new CycleTree(this->getNode(),this->currCycle);
-//    output->setChildren(this->cloneChildren());
-//    return output;
-//}
-//
-//MaxRankTree* MaxRankTree::clone() const{
-//    MaxRankTree* output = new MaxRankTree(this->getNode());
-//    output->setChildren(this->cloneChildren());
-//    return output;
-//}
 
-//RootTree* RootTree::clone() const{
-//    RootTree* output = new RootTree(this->getNode());
-//    output->setChildren(this->cloneChildren());
-//    return output;
-//}
 
 
 
