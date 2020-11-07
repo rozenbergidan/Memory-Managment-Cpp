@@ -9,10 +9,7 @@ using namespace std;
 Tree::Tree(int rootLabel) : node(rootLabel){}
 
 void Tree::addChild(const Tree &child) {
-    //children.push_back((Tree*)&child);
-}
-int Tree::getNode() const {
-    return node;
+    children.push_back(child.clone());
 }
 
 
@@ -21,38 +18,43 @@ Tree::~Tree(){
         if(children[i]) delete children[i];
     }
 }
+
 //---------------------------------------CycleTree--------------------------------------------------------------
 const CycleTree& CycleTree::operator=(const CycleTree &other) {
     children = other.children;
-    setNode(other.getNode());
+    node = other.node;
     currCycle = other.currCycle;
     return *this;
 
 }
 
-int CycleTree::traceTree() {
-    CycleTree* outputTree = this;
+int CycleTree::traceTree() const{
+    const CycleTree* outputTree = this;
     for(int i = 0 ; i <= currCycle; i = i + 1){
         outputTree = (CycleTree*)outputTree->children[0];
     }
 }
+
+CycleTree* CycleTree::clone() const {
+    return new CycleTree(*this);
+}
 //---------------------------------------MaxRankTree------------------------------------------------------------
 
-int MaxRankTree::traceTree() {
-    MaxRankTree* max = this;
-    MaxRankTree* maxInchilds = traceTreeRecursion(children.size());
-    if(maxInchilds != nullptr) max = maxInchilds;
+int MaxRankTree::traceTree() const{
+    const MaxRankTree* max = this;
+    const MaxRankTree* maxInChildren = traceTreeRecursion(children.size());
+    if(maxInChildren != nullptr) max = maxInChildren;
     return max->node;
 }
 
-MaxRankTree* MaxRankTree::traceTreeRecursion(int currMax) {
-    MaxRankTree* output = nullptr;
+const MaxRankTree* MaxRankTree::traceTreeRecursion(int currMax) const{
+    const MaxRankTree* output = nullptr;
     if(children.size()>currMax) {
         currMax = children.size();
         output = this;
     }
     for(int i = 0; i < children.size();  i = i + 1){
-        MaxRankTree* maxInChild = ((MaxRankTree*)children[i])->traceTreeRecursion(currMax);
+        const MaxRankTree* maxInChild = ((MaxRankTree*)children[i])->traceTreeRecursion(currMax);
         if (maxInChild != nullptr){
             output = maxInChild;
             currMax = maxInChild->node;
@@ -60,11 +62,17 @@ MaxRankTree* MaxRankTree::traceTreeRecursion(int currMax) {
     }
     return output;
 }
-//---------------------------------------RootTree---------------------------------------------------------------
-int RootTree::traceTree() {
-    return getNode();
+MaxRankTree* MaxRankTree::clone() const {
+    return new MaxRankTree(*this);
 }
-
+//---------------------------------------RootTree---------------------------------------------------------------
+int RootTree::traceTree() const{
+    return node;
+}
+RootTree* RootTree::clone() const {
+    return new RootTree(*this);
+}
+//--------------------------------------------------------------------------------------------------------------
 
 
 

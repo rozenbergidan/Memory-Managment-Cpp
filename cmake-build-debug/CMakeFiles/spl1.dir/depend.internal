@@ -7,6 +7,7 @@ CMakeFiles/spl1.dir/Agent.cpp.o
  /home/spl211/Desktop/SPL/SPL1/spl1/Graph.h
  /home/spl211/Desktop/SPL/SPL1/spl1/Session.h
  /home/spl211/Desktop/SPL/SPL1/spl1/Tree.h
+ /home/spl211/Desktop/SPL/SPL1/spl1/json.hpp
 CMakeFiles/spl1.dir/Graph.cpp.o
  /home/spl211/Desktop/SPL/SPL1/spl1/Graph.cpp
  /home/spl211/Desktop/SPL/SPL1/spl1/Graph.h
@@ -16,11 +17,14 @@ CMakeFiles/spl1.dir/Session.cpp.o
  /home/spl211/Desktop/SPL/SPL1/spl1/Session.cpp
  /home/spl211/Desktop/SPL/SPL1/spl1/Session.h
  /home/spl211/Desktop/SPL/SPL1/spl1/Tree.h
+ /home/spl211/Desktop/SPL/SPL1/spl1/json.hpp
 CMakeFiles/spl1.dir/Tree.cpp.o
+ /home/spl211/Desktop/SPL/SPL1/spl1/Graph.h
  /home/spl211/Desktop/SPL/SPL1/spl1/Tree.cpp
  /home/spl211/Desktop/SPL/SPL1/spl1/Tree.h
 CMakeFiles/spl1.dir/main.cpp.o
  /home/spl211/Desktop/SPL/SPL1/spl1/Graph.h
  /home/spl211/Desktop/SPL/SPL1/spl1/Session.h
  /home/spl211/Desktop/SPL/SPL1/spl1/Tree.h
+ /home/spl211/Desktop/SPL/SPL1/spl1/json.hpp
  /home/spl211/Desktop/SPL/SPL1/spl1/main.cpp
