@@ -42,3 +42,7 @@ void Session::addAgent(const Agent &agent) {
 void Session::setGraph(const Graph& graph){
     g=graph;
 };
+
+Tree* Session::BFS(int node) {
+    return g.BFS(*this,node);
+}

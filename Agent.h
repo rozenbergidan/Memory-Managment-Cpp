@@ -36,6 +36,7 @@ public:
 
 private:
     const int nodeInd;
+    bool isActive; //to know if the node is infected
 };
 
 #endif

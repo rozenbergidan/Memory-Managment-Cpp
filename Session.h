@@ -24,9 +24,13 @@ public:
     void setGraph(const Graph& graph);
     
     void enqueueInfected(int);
-    int dequeueInfected();
+    int dequeueInfected(); //return -1 if empty
     TreeType getTreeType() const;
-    
+
+    ///our code
+    Tree* BFS(int node)(); //return the BFS tree from g, reducing coupling
+    void isolateNode(int node)(); //isolate the node from its neighbors
+    int infect(int node)();// return the node neighbor to infect, return -1 is all neighbors are infected
 private:
     Graph g;
     TreeType treeType;
