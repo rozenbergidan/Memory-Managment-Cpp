@@ -2,10 +2,7 @@
 #define TREE_H_
 
 #include <vector>
-//my code
-/////////////////
-#include "Graph.h"
-///////////////
+
 class Session;
 
 class Tree{

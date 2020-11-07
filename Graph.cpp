@@ -4,10 +4,9 @@
 
 #include <queue>
 #include "Graph.h"
-#include "Tree.h"
+
 using namespace std;
-class Tree;
-class Session;
+
 Graph::Graph(vector <vector<int>> matrix) :edges(matrix){};
 
 Tree* Graph ::BFS(const Session& session, int root) { //if you use this func its up to you to delete the tree!!

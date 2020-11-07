@@ -33,6 +33,7 @@ int CycleTree::traceTree() const{
     for(int i = 0 ; i <= currCycle; i = i + 1){
         outputTree = (CycleTree*)outputTree->children[0];
     }
+    return outputTree->node;
 }
 
 CycleTree* CycleTree::clone() const {
