@@ -28,17 +28,17 @@ public:
     TreeType getTreeType() const;
 
     ///our code
-    Tree* BFS(int node)(); //return the BFS tree from g, reducing coupling
-    void isolateNode(int node)(); //isolate the node from its neighbors
-    int infect(int node)();// return the node neighbor to infect, return -1 is all neighbors are infected
+    Tree* BFS(int node); //return the BFS tree from g, reducing coupling
+    void isolateNode(int node); //isolate the node from its neighbors
+    int infect(int node);// return the node neighbor to infect, return -1 is all neighbors are infected
 private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
 
     //my code
-    Queue infectedQueue;
-    int verticesNum;
+    //Queue infectedQueue;
+    //int verticesNum;
     //
 };
 

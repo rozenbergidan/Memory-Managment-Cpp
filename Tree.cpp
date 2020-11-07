@@ -19,6 +19,15 @@ Tree::~Tree(){
     }
 }
 
+const Tree& Tree::operator=(const Tree &other) {
+    node = other.node;
+    children = other.children;//TODO: check if the vector = operator is good for us... if not go through all the vector.
+}
+
+int Tree::getNode() const {
+    return node;
+}
+
 //---------------------------------------CycleTree--------------------------------------------------------------
 const CycleTree& CycleTree::operator=(const CycleTree &other) {
     children = other.children;
