@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "Graph.h"
+#include "Agent.h"//////////////////////////////////////////////////////////
 #include "json.hpp"
 
 class Agent;

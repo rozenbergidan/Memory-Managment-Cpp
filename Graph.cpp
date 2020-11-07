@@ -4,10 +4,9 @@
 
 #include <queue>
 #include "Graph.h"
-#include "Tree.h"
+
 using namespace std;
-class Tree;
-class Session;
+
 Graph::Graph(vector <vector<int>> matrix) :edges(matrix){};
 
 //TODO complete BFS
