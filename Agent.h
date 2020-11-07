@@ -10,6 +10,7 @@ public:
 
     virtual void act()=0;
     virtual Agent* clone() const =0;
+    //virtual const Agent& operator=(const Agent& other)=0;
 
 protected:
     Session& session;
@@ -21,6 +22,7 @@ public:
     //virtual ~ContactTracer();
     virtual void act();
     virtual ContactTracer* clone() const;
+    virtual const ContactTracer& operator=(const ContactTracer& other);
 };
 
 
@@ -30,6 +32,7 @@ public:
     //virtual ~Virus();
     virtual void act();
     virtual Virus* clone() const;
+    virtual const Virus& operator=(const Virus& other);
 
 private:
     const int nodeInd;
