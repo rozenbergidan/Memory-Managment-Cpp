@@ -31,9 +31,7 @@ Session::Session(const std::string &path): g({}),treeType(), agents(){
 
 }
 void Session::simulate() {
-    while(infectedQueue.size != 0){
 
-    }
 }
 void Session::addAgent(const Agent &agent) {
     Agent *clone=agent.clone();
