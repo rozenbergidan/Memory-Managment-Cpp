@@ -8,6 +8,8 @@ using namespace std;
 
 Tree::Tree(int rootLabel) : node(rootLabel){}
 
+Tree::Tree(const Tree &other) :children(other.children), node(other.node){}
+
 void Tree::addChild(const Tree &child) {
     children.push_back(child.clone());
 }
@@ -31,6 +33,11 @@ int Tree::getNode() const {
 //---------------------------------------CycleTree--------------------------------------------------------------
 CycleTree::CycleTree(int rootLabel, int currCycle): Tree(rootLabel), currCycle(currCycle){}
 
+CycleTree::CycleTree(const CycleTree &other) : Tree(other), currCycle(other.currCycle){}
+
+
+
+
 const CycleTree& CycleTree::operator=(const CycleTree &other) {
     children = other.children;
     node = other.node;
@@ -51,6 +58,7 @@ CycleTree* CycleTree::clone() const {
     return new CycleTree(*this);
 }
 //---------------------------------------MaxRankTree------------------------------------------------------------
+MaxRankTree::MaxRankTree(const MaxRankTree &other):Tree(other) {}
 
 int MaxRankTree::traceTree() const{
     const MaxRankTree* max = this;
@@ -78,6 +86,7 @@ MaxRankTree* MaxRankTree::clone() const {
     return new MaxRankTree(*this);
 }
 //---------------------------------------RootTree---------------------------------------------------------------
+RootTree::RootTree(const RootTree &other): Tree(other){}
 int RootTree::traceTree() const{
     return node;
 }
