@@ -17,7 +17,7 @@ Session::Session(const std::string &path): g({}),treeType(), agents(){
     auto t=j["tree"];
     //addAgents
     for(auto elem: a){
-        //if(elem[0]=='C') Agent agent=new Virus(elem[1],this)
+        //if(elem[0]=='V') Agent agent=new Virus(elem[1],this)
         //else Agent agent=new ContactTracer(this);
         //addAgent(agent);
     }
@@ -30,7 +30,11 @@ Session::Session(const std::string &path): g({}),treeType(), agents(){
 
 
 };
+void Session::simulate() {
+    while(infectedQueue.size != 0){
 
+    }
+}
 void Session::addAgent(const Agent &agent) {
     Agent *clone=agent.clone();
     agents.push_back(clone);
