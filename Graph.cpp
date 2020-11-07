@@ -36,3 +36,11 @@ Tree* Graph ::BFS(const Session& session, int root) { //if you use this func its
 
     return BFStree;
 }
+
+std::vector<int> Graph::getNeighbors(int i) {
+    vector<int> output;
+    for(int j=0;j<edges[i].size();j++){
+        if(edges[i][j]==1)output.push_back(j);
+    }
+    return output;
+}

@@ -4,10 +4,10 @@
 
 #include "Agent.h"
 using namespace  std;
-
+//---------------------------------------Agent---------------------------------------------------------------
 Agent::Agent(Session& session) : session(session){}
 
-
+//---------------------------------------ContactTracer---------------------------------------------------------------
 ContactTracer::ContactTracer(Session &session) : Agent(session){};
 ContactTracer * ContactTracer::clone() const{
     ContactTracer *output=new ContactTracer(session);
@@ -27,7 +27,7 @@ void ContactTracer::act(){
     }
 
 }
-
+//---------------------------------------Virus---------------------------------------------------------------
 Virus::Virus(int nodeInd, Session &session) : Agent(session), nodeInd(nodeInd),isActive(false) {}
 Virus * Virus::clone() const{
     Virus *output=new Virus(nodeInd,session);
@@ -38,10 +38,11 @@ void Virus::act() {
         isActive=true;
         session.enqueueInfected(nodeInd);
     }
-    int nodeToInfect=session.infect(nodeInd);
+    int nodeToInfect= session.getNeighborToInfect(nodeInd);
     if(nodeToInfect!=-1){
         Virus *newVirus=new Virus(nodeToInfect,session);
         session.addAgent(*newVirus);
+        session.addInfected(nodeToInfect);
         delete newVirus;
     }
 

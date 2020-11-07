@@ -30,14 +30,17 @@ public:
     ///our code
     Tree* BFS(int node); //return the BFS tree from g, reducing coupling
     void isolateNode(int node); //isolate the node from its neighbors
-    int infect(int node);// return the node neighbor to infect, return -1 is all neighbors are infected
-
+    int getNeighborToInfect(int node);// return the node neighbor to getNeighborToInfect, return -1 is all neighbors are infected
+    bool isNodeInfected(int node); //return true if node is infected, and false otherwise
     bool isAllActiveAndIsolated; //return True if all active nodes are isolated
+
+    void addInfected(int node);
 private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
 
+    vector<int> infected;
     //my code
     //Queue infectedQueue;
     //int verticesNum;

@@ -23,6 +23,9 @@ public:
     virtual void act();
     virtual ContactTracer* clone() const;
     virtual const ContactTracer& operator=(const ContactTracer& other);
+
+    //our function
+
 };
 
 
@@ -34,6 +37,8 @@ public:
     virtual Virus* clone() const;
     virtual const Virus& operator=(const Virus& other);
 
+    //our functions
+    const int getNodeInd();
 private:
     const int nodeInd;
     bool isActive; //to know if the node is infected
