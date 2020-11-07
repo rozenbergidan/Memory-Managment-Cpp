@@ -16,21 +16,11 @@ vector
 Session.h
 /home/spl211/Desktop/SPL/SPL1/spl1/Session.h
 
-/home/spl211/Desktop/SPL/SPL1/spl1/Graph.cpp
-queue
--
-Graph.h
-/home/spl211/Desktop/SPL/SPL1/spl1/Graph.h
-
 /home/spl211/Desktop/SPL/SPL1/spl1/Graph.h
 vector
 -
 Tree.h
 /home/spl211/Desktop/SPL/SPL1/spl1/Tree.h
-
-/home/spl211/Desktop/SPL/SPL1/spl1/Session.cpp
-Session.h
-/home/spl211/Desktop/SPL/SPL1/spl1/Session.h
 
 /home/spl211/Desktop/SPL/SPL1/spl1/Session.h
 vector
@@ -39,10 +29,6 @@ string
 -
 Graph.h
 /home/spl211/Desktop/SPL/SPL1/spl1/Graph.h
-
-/home/spl211/Desktop/SPL/SPL1/spl1/Tree.cpp
-Tree.h
-/home/spl211/Desktop/SPL/SPL1/spl1/Tree.h
 
 /home/spl211/Desktop/SPL/SPL1/spl1/Tree.h
 vector
