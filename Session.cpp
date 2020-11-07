@@ -29,7 +29,7 @@ Session::Session(const std::string &path): g({}),treeType(), agents(){
     treeType=t;
 
 
-};
+}
 void Session::simulate() {
     while(infectedQueue.size != 0){
 
@@ -38,10 +38,10 @@ void Session::simulate() {
 void Session::addAgent(const Agent &agent) {
     Agent *clone=agent.clone();
     agents.push_back(clone);
-};
+}
 void Session::setGraph(const Graph& graph){
     g=graph;
-};
+}
 
 Tree* Session::BFS(int node) {
     return g.BFS(*this,node);
