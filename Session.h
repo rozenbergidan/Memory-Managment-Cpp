@@ -33,18 +33,16 @@ public:
     int getNeighborToInfect(int node);// return the node neighbor to getNeighborToInfect, return -1 is all neighbors are infected
     bool isNodeInfected(int node); //return true if node is infected, and false otherwise
     bool isAllActiveAndIsolated; //return True if all active nodes are isolated
-
+    int getCycleCount() const;
     void addInfected(int node);
 private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
 
-    vector<int> infected;
-    //my code
-    //Queue infectedQueue;
-    //int verticesNum;
-    //
+    int cycleCount;
+    std::vector<int> infected;
+    //TODO: add infectedQueue
 };
 
 #endif

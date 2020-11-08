@@ -19,8 +19,12 @@ CMakeFiles/spl1.dir/Session.cpp.o: ../Session.h
 CMakeFiles/spl1.dir/Session.cpp.o: ../Tree.h
 CMakeFiles/spl1.dir/Session.cpp.o: ../json.hpp
 
+CMakeFiles/spl1.dir/Tree.cpp.o: ../Agent.h
+CMakeFiles/spl1.dir/Tree.cpp.o: ../Graph.h
+CMakeFiles/spl1.dir/Tree.cpp.o: ../Session.h
 CMakeFiles/spl1.dir/Tree.cpp.o: ../Tree.cpp
 CMakeFiles/spl1.dir/Tree.cpp.o: ../Tree.h
+CMakeFiles/spl1.dir/Tree.cpp.o: ../json.hpp
 
 CMakeFiles/spl1.dir/main.cpp.o: ../Agent.h
 CMakeFiles/spl1.dir/main.cpp.o: ../Graph.h

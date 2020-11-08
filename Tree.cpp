@@ -4,11 +4,16 @@
 
 
 #include "Tree.h"
+#include "Session.h"
 using namespace std;
 
 Tree::Tree(int rootLabel) : node(rootLabel){}
 
-Tree::Tree(const Tree &other) :children(other.children), node(other.node){}
+Tree::Tree(const Tree &other) :children(), node(other.node){
+    for(int i = 0; i < other.children.size(); i = i + 1){
+        children.push_back(other.children[i]);
+    }
+}
 
 void Tree::addChild(const Tree &child) {
     children.push_back(child.clone());
@@ -28,6 +33,12 @@ const Tree& Tree::operator=(const Tree &other) {
 
 int Tree::getNode() const {
     return node;
+}
+
+Tree* Tree::createTree(const Session &session, int rootLabel) {
+    if(session.getTreeType() != 'M') return new MaxRankTree(rootLabel);
+    if(session.getTreeType() != 'R') return new RootTree(rootLabel);
+    if(session.getTreeType() != 'C') return new CycleTree(rootLabel,session.getCycleCount());
 }
 
 //---------------------------------------CycleTree--------------------------------------------------------------

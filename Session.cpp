@@ -9,7 +9,7 @@ using namespace  std;
 using json = nlohmann::json;
 
 Session::Session(const std::string &path): g({}),treeType(), agents(){
-    ifstream i(path);
+    /*ifstream i(path);
     json j;
     j<<i;
     auto a=j["agents"];
@@ -26,7 +26,7 @@ Session::Session(const std::string &path): g({}),treeType(), agents(){
         //v.push_back(elem);
     }
     //Graph graph(v);
-    treeType=t;
+    treeType=t;*/
 
 
 }
