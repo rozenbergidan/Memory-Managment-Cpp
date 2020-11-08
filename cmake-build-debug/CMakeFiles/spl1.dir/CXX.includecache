@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/spl211/Desktop/SPL/SPL1/spl1/Agent.cpp
-Agent.h
-/home/spl211/Desktop/SPL/SPL1/spl1/Agent.h
-
 /home/spl211/Desktop/SPL/SPL1/spl1/Agent.h
 vector
 -
@@ -22,7 +18,17 @@ vector
 Tree.h
 /home/spl211/Desktop/SPL/SPL1/spl1/Tree.h
 
+/home/spl211/Desktop/SPL/SPL1/spl1/Session.cpp
+fstream
+-
+iostream
+-
+Session.h
 /home/spl211/Desktop/SPL/SPL1/spl1/Session.h
+
+/home/spl211/Desktop/SPL/SPL1/spl1/Session.h
+json.hpp
+/home/spl211/Desktop/SPL/SPL1/spl1/json.hpp
 vector
 -
 queue
@@ -33,8 +39,6 @@ Graph.h
 /home/spl211/Desktop/SPL/SPL1/spl1/Graph.h
 Agent.h
 /home/spl211/Desktop/SPL/SPL1/spl1/Agent.h
-json.hpp
-/home/spl211/Desktop/SPL/SPL1/spl1/json.hpp
 
 /home/spl211/Desktop/SPL/SPL1/spl1/Tree.h
 vector

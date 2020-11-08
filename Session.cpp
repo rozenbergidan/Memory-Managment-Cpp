@@ -3,6 +3,7 @@
 //
 
 #include <fstream>
+#include <iostream>
 #include "Session.h"
 
 using namespace  std;
@@ -37,20 +38,17 @@ void Session::fromJSON(const std::string &path) {
 
     //init Agents
     for(auto agent:js["agents"]){
-        if(agent[0]=='V'){
+        if(agent[0]=="V"){
             Virus *virus=new Virus(agent[1],*this);
             addAgent(*virus);
-
         }
         else{
             ContactTracer *contractTrace=new ContactTracer(*this);
             addAgent(*contractTrace);
         }
     }
-
-
-
 }
+
 void Session::simulate() {
     while(!isAllActiveOrIsolated()){
         int agentsSize = agents.size();
@@ -61,11 +59,12 @@ void Session::simulate() {
         cycleCount = cycleCount + 1;
     }
 }
+
 void Session::addAgent(const Agent &agent) {
     Agent *clone=agent.clone();
-
     agents.push_back(clone);
 }
+
 void Session::setGraph(const Graph& graph){
     g=graph;//////////////////////////////////////////////////////////////////////////////////////////////
 }
