@@ -37,9 +37,9 @@ int Tree::getNode() const {
 }
 
 Tree* Tree::createTree(const Session &session, int rootLabel) {
-    if(session.getTreeType() == 0) return new CycleTree(rootLabel,session.getCycleCount());
-    if(session.getTreeType() == 1) return new MaxRankTree(rootLabel);
-    if(session.getTreeType() == 2) return new RootTree(rootLabel);
+    if(session.getTreeType() == TreeType::Cycle) return new CycleTree(rootLabel,session.getCycleCount());
+    if(session.getTreeType() == TreeType::Root) return new MaxRankTree(rootLabel);
+    if(session.getTreeType() == TreeType::MaxRank) return new RootTree(rootLabel);
 }
 
 //---------------------------------------CycleTree--------------------------------------------------------------
