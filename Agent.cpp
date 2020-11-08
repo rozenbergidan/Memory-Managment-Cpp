@@ -34,6 +34,7 @@ Virus * Virus::clone() const{
     return output;
 }
 void Virus::act() {
+    std::printf("asd");////////////////////////////////////////////////////////////////////////////////////
     if(!isActive){
         isActive=true;
         session.enqueueInfected(nodeInd);

@@ -30,11 +30,17 @@ public:
 
     ///our code
     Tree* BFS(int node); //return the BFS tree from g, reducing coupling
+
     void isolateNode(int node); //isolate the node from its neighbors calls to graph function
+
     int getNeighborToInfect(int node);// return the node neighbor to getNeighborToInfect, return -1 is all neighbors are infected
+
     bool isNodeInfected(int node); //return true if node is infected, and false otherwise
-    bool isAllActiveAndIsolated; //return True if all active nodes are isolated
+
+    bool isAllActiveOrIsolated(); //return True if all active nodes are isolated
+
     int getCycleCount() const;
+
     void addInfected(int node);
 
 
@@ -45,9 +51,9 @@ private:
     void fromJSON(const std::string &path);
 
     int cycleCount;
-    //TODO: changed infected logic to work as an array
+    //TODO: changed infected to array
     std::vector<bool> infected;
-    //TODO: add infectedQueue
+    //bool[] *infected;
     std::queue<int> infectedQueue;
 
 

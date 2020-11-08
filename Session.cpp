@@ -52,7 +52,14 @@ void Session::fromJSON(const std::string &path) {
 
 }
 void Session::simulate() {
+    while(!isAllActiveOrIsolated()){
+        int agentsSize = agents.size();
+        for (int i = 0; i < agentsSize; i = i + 1){
+            agents[i]->act();
+        }
 
+        cycleCount = cycleCount + 1;
+    }
 }
 void Session::addAgent(const Agent &agent) {
     Agent *clone=agent.clone();
@@ -98,9 +105,16 @@ void Session::isolateNode(int node) {
 }
 
 void Session::enqueueInfected(int node) {infectedQueue.push(node);}
+
 int Session::dequeueInfected() {
     int output =  infectedQueue.front();
     infectedQueue.pop();
     return output;
 }
 
+bool Session:: isAllActiveOrIsolated(){
+    for (int i = 0; i < infected.size(); i ++){
+        if(infected[i] & (getNeighborToInfect(i) != -1)) return false;
+    }
+    return true;
+}

@@ -9,8 +9,8 @@ using namespace std;
 
 Graph::Graph(vector <vector<int>> matrix) :edges(matrix){};
 
-Graph::Graph(const Graph& other){
-
+const Graph & Graph::operator=(const Graph &other) {
+    edges = other.edges;
 }
 //TODO complete BFS
 Tree* Graph ::BFS(const Session& session, int root) { //if you use this func its up to you to delete the tree!!
