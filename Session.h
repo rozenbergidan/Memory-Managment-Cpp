@@ -35,13 +35,15 @@ public:
     bool isAllActiveAndIsolated; //return True if all active nodes are isolated
     int getCycleCount() const;
     void addInfected(int node);
+
 private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
 
     int cycleCount;
-    std::vector<int> infected;
+    //TODO: changed infected logic to work as an array
+    std::vector<bool> infected;
     //TODO: add infectedQueue
 };
 

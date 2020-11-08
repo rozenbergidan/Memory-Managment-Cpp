@@ -67,3 +67,8 @@ void Session::addInfected(int node) {
 }
 
 int Session::getCycleCount() const {return cycleCount;}
+
+TreeType Session::getTreeType() const {
+    return treeType;
+}
+

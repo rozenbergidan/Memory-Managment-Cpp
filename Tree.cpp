@@ -5,6 +5,7 @@
 
 #include "Tree.h"
 #include "Session.h"
+
 using namespace std;
 
 Tree::Tree(int rootLabel) : node(rootLabel){}
@@ -36,9 +37,10 @@ int Tree::getNode() const {
 }
 
 Tree* Tree::createTree(const Session &session, int rootLabel) {
-    if(session.getTreeType() == 'M') return new MaxRankTree(rootLabel);
-    if(session.getTreeType() == 'R') return new RootTree(rootLabel);
-    if(session.getTreeType() == 'C') return new CycleTree(rootLabel,session.getCycleCount());
+    if(session.getTreeType() == 0) return new CycleTree(rootLabel,session.getCycleCount());
+    if(session.getTreeType() == 1) return new MaxRankTree(rootLabel);
+    if(session.getTreeType() == 2) return new RootTree(rootLabel);
+
 }
 
 //---------------------------------------CycleTree--------------------------------------------------------------
