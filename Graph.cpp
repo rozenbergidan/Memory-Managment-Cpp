@@ -44,3 +44,10 @@ std::vector<int> Graph::getNeighbors(int i) {
     }
     return output;
 }
+
+void Graph::isolateNode(int node) {
+    for(int i = 0 ; i < edges.size(); i = i + 1){
+        edges[node][i] = 0;
+        edges[i][node] = 0;
+    }
+}

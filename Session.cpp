@@ -39,7 +39,7 @@ void Session::addAgent(const Agent &agent) {
     agents.push_back(clone);
 }
 void Session::setGraph(const Graph& graph){
-    g=graph;
+    g=graph;//////////////////////////////////////////////////////////////////////////////////////////////
 }
 
 Tree* Session::BFS(int node) {
@@ -68,7 +68,18 @@ void Session::addInfected(int node) {
 
 int Session::getCycleCount() const {return cycleCount;}
 
+
 TreeType Session::getTreeType() const {
     return treeType;
+}
+void Session::isolateNode(int node) {
+    g.isolateNode(node);
+}
+
+void Session::enqueueInfected(int node) {infectedQueue.push(node);}
+int Session::dequeueInfected() {
+    int output =  infectedQueue.front();
+    infectedQueue.pop();
+    return output;
 }
 

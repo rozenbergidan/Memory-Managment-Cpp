@@ -12,6 +12,7 @@ public:
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
 
+    void isolateNode(int node);
     //my code
     /////////////////////////////////////////////////////////////////////////
     Tree* BFS(const Session& session, int root);

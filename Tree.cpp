@@ -40,7 +40,6 @@ Tree* Tree::createTree(const Session &session, int rootLabel) {
     if(session.getTreeType() == 0) return new CycleTree(rootLabel,session.getCycleCount());
     if(session.getTreeType() == 1) return new MaxRankTree(rootLabel);
     if(session.getTreeType() == 2) return new RootTree(rootLabel);
-
 }
 
 //---------------------------------------CycleTree--------------------------------------------------------------
@@ -73,6 +72,8 @@ CycleTree* CycleTree::clone() const {
 //---------------------------------------MaxRankTree------------------------------------------------------------
 MaxRankTree::MaxRankTree(const MaxRankTree &other):Tree(other) {}
 
+MaxRankTree::MaxRankTree(int rootLabel): Tree(rootLabel){}
+
 int MaxRankTree::traceTree() const{
     const MaxRankTree* max = this;
     const MaxRankTree* maxInChildren = traceTreeRecursion(children.size());
@@ -100,6 +101,9 @@ MaxRankTree* MaxRankTree::clone() const {
 }
 //---------------------------------------RootTree---------------------------------------------------------------
 RootTree::RootTree(const RootTree &other): Tree(other){}
+
+RootTree::RootTree(int rootLabel): Tree(rootLabel){}
+
 int RootTree::traceTree() const{
     return node;
 }

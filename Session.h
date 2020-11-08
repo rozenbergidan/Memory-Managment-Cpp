@@ -2,6 +2,7 @@
 #define SESSION_H_
 
 #include <vector>
+#include <queue>
 #include <string>
 #include "Graph.h"
 #include "Agent.h"
@@ -29,7 +30,7 @@ public:
 
     ///our code
     Tree* BFS(int node); //return the BFS tree from g, reducing coupling
-    void isolateNode(int node); //isolate the node from its neighbors
+    void isolateNode(int node); //isolate the node from its neighbors calls to graph function
     int getNeighborToInfect(int node);// return the node neighbor to getNeighborToInfect, return -1 is all neighbors are infected
     bool isNodeInfected(int node); //return true if node is infected, and false otherwise
     bool isAllActiveAndIsolated; //return True if all active nodes are isolated
@@ -45,6 +46,9 @@ private:
     //TODO: changed infected logic to work as an array
     std::vector<bool> infected;
     //TODO: add infectedQueue
+    std::queue<int> infectedQueue;
+
+
 };
 
 #endif
