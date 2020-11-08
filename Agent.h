@@ -35,7 +35,7 @@ public:
     //virtual ~Virus();
     virtual void act();
     virtual Virus* clone() const;
-    virtual const Virus& operator=(const Virus& other);
+    //virtual const Virus& operator=(const Virus& other);
 
     //our functions
     const int getNodeInd();

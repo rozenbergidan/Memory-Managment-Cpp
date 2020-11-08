@@ -12,22 +12,22 @@ Graph::Graph(vector <vector<int>> matrix) :edges(matrix){};
 //TODO complete BFS
 Tree* Graph ::BFS(const Session& session, int root) { //if you use this func its up to you to delete the tree!!
     queue<Tree*> nodeQueue;
-    bool isViseted [edges.size()];
+    bool isVisited [edges.size()];
     for (int i = 0; i < edges.size(); i = i + 1){
-        isViseted[i] = false;
+        isVisited[i] = false;
     }
-    isViseted[root] = true;
+    isVisited[root] = true;
     Tree* BFStree = Tree::createTree(session, root);
     nodeQueue.push(BFStree);
     while (nodeQueue.size() != 0){
         Tree* tree = nodeQueue.front();
         nodeQueue.pop();
         for (int i = 0; i < edges.size();i = i + 1){
-            if(edges[tree->getNode()][i] == 1 & isViseted[i] == false){
+            if(edges[tree->getNode()][i] == 1 & isVisited[i] == false){
                 Tree* node = Tree::createTree(session,i);
                 nodeQueue.push(node);
                 tree->addChild(*node);
-                isViseted[i] = true;
+                isVisited[i] = true;
             }
         }
         if(tree->getNode() != root) delete tree;
