@@ -8,25 +8,46 @@
 using namespace  std;
 using json = nlohmann::json;
 
-Session::Session(const std::string &path): g({}),treeType(), agents(){
-    /*ifstream i(path);
-    json j;
-    j<<i;
-    auto a=j["agents"];
-    auto g=j["graph"];
-    auto t=j["tree"];
-    //addAgents
-    for(auto elem: a){
-        //if(elem[0]=='V') Agent agent=new Virus(elem[1],this)
-        //else Agent agent=new ContactTracer(this);
-        //addAgent(agent);
+Session::Session(const std::string &path): g({}),treeType(), agents(), cycleCount(0), infected({}),infectedQueue(){
+    fromJSON(path);
+
+}
+
+void Session::fromJSON(const std::string &path) {
+    ifstream jsonFile(path);
+    json js;
+    js<<jsonFile;
+
+    auto agentss=js["agents"];
+    auto graphh=js["graph"];
+    auto treeTypee=js["tree"];
+
+    //init Graph for g
+    std::vector<std::vector<int>> matrix;
+    for(std::vector<int> row:graphh){
+        matrix.push_back(row);
     }
-    vector<vector<int>> v(g.size());
-    for(auto elem: g){
-        //v.push_back(elem);
+    Graph g1(matrix);
+    g=g1;
+
+    //init treeType
+    if(js["tree"]=='C') treeType=TreeType::Cycle;
+    if(js["tree"]=='M') treeType=TreeType::MaxRank;
+    if(js["tree"]=='R') treeType=TreeType::Root;
+
+    //init Agents
+    for(auto agent:js["agents"]){
+        if(agent[0]=='V'){
+            Virus *virus=new Virus(agent[1],*this);
+            addAgent(*virus);
+
+        }
+        else{
+            ContactTracer *contractTrace=new ContactTracer(*this);
+            addAgent(*contractTrace);
+        }
     }
-    //Graph graph(v);
-    treeType=t;*/
+
 
 
 }

@@ -8,7 +8,7 @@
 class Graph{
 public:
     Graph(std::vector<std::vector<int>> matrix);
-
+    const Graph& operator=(const Graph& other);
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
 
