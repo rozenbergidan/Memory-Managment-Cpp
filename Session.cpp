@@ -8,26 +8,9 @@
 using namespace  std;
 using json = nlohmann::json;
 
-Session::Session(const std::string &path): g({}),treeType(), agents(){
+Session::Session(const std::string &path): g({}),treeType(), agents(), cycleCount(0), infected({}),infectedQueue(){
     fromJSON(path);
-    /*ifstream i(path);
-    json j;
-    j<<i;
-    auto a=j["agents"];
-    auto g=j["graph"];
-    auto t=j["tree"];
-    //addAgents
-    for(auto elem: a){
-        //if(elem[0]=='V') Agent agent=new Virus(elem[1],this)
-        //else Agent agent=new ContactTracer(this);
-        //addAgent(agent);
-    }
-    vector<vector<int>> v(g.size());
-    for(auto elem: g){
-        //v.push_back(elem);
-    }
-    //Graph graph(v);
-    treeType=t;*/
+
 }
 
 void Session::fromJSON(const std::string &path) {
@@ -53,8 +36,16 @@ void Session::fromJSON(const std::string &path) {
     if(js["tree"]=='R') treeType=TreeType::Root;
 
     //init Agents
-    for(Agent agent:js["agents"]){
+    for(auto agent:js["agents"]){
+        if(agent[0]=='V'){
+            Virus *virus=new Virus(agent[1],*this);
+            addAgent(*virus);
 
+        }
+        else{
+            ContactTracer *contractTrace=new ContactTracer(*this);
+            addAgent(*contractTrace);
+        }
     }
 
 
