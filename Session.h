@@ -50,6 +50,7 @@ private:
     TreeType treeType;
     std::vector<Agent*> agents;
     void fromJSON(const std::string &path);
+    void toJson();
 
     int cycleCount;
     //TODO: changed infected to array

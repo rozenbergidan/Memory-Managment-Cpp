@@ -4,41 +4,48 @@
 #include <vector>
 #include "Session.h"
 
-class Agent{
+class Agent {
 public:
-    Agent(Session& session);
+    Agent(Session &session);
 
-    virtual void act()=0;
-    virtual Agent* clone() const =0;
+    virtual void act() = 0;
+
+    virtual Agent *clone() const = 0;
     //virtual const Agent& operator=(const Agent& other)=0;
 
 protected:
-    Session& session;
+    Session &session;
 };
 
-class ContactTracer: public Agent{
+class ContactTracer : public Agent {
 public:
-    ContactTracer(Session& session);
+    ContactTracer(Session &session);
+
     //virtual ~ContactTracer();
     virtual void act();
-    virtual ContactTracer* clone() const;
-    virtual const ContactTracer& operator=(const ContactTracer& other);
+
+    virtual ContactTracer *clone() const;
+
+    virtual const ContactTracer &operator=(const ContactTracer &other);
 
     //our function
 
 };
 
 
-class Virus: public Agent{
+class Virus : public Agent {
 public:
     Virus(int nodeInd, Session &session);
+
     //virtual ~Virus();
     virtual void act();
-    virtual Virus* clone() const;
+
+    virtual Virus *clone() const;
     //virtual const Virus& operator=(const Virus& other);
 
     //our functions
     const int getNodeInd();
+
 private:
     const int nodeInd;
     bool isActive; //to know if the node is infected
