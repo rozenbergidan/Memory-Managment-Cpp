@@ -31,7 +31,7 @@ private:
 
     std::vector<std::vector<int>> edges;
     int NUM_OF_NODES; //TODO: try to change to const;
-    bool *infectedTracer;
+    std::vector<bool> infectedTracer;
 };
 
 #endif

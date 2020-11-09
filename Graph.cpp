@@ -8,9 +8,10 @@
 using namespace std;
 
 
-Graph::Graph(vector <vector<int>> matrix) :edges(matrix), NUM_OF_NODES(edges.size()),infectedTracer(new bool[NUM_OF_NODES]){
+Graph::Graph(vector <vector<int>> matrix) :edges(matrix), NUM_OF_NODES(edges.size()),infectedTracer({}){
+
     for(int i = 0; i < NUM_OF_NODES; i = i + 1){
-        infectedTracer[i] = false;
+        infectedTracer.push_back(false);
     }
 };
 
