@@ -41,8 +41,8 @@ int Tree::getNode() const {
 
 Tree *Tree::createTree(const Session &session, int rootLabel) {
     if (session.getTreeType() == TreeType::Cycle) return new CycleTree(rootLabel, session.getCycleCount());
-    if (session.getTreeType() == TreeType::Root) return new MaxRankTree(rootLabel);
-    if (session.getTreeType() == TreeType::MaxRank) return new RootTree(rootLabel);
+    if (session.getTreeType() == TreeType::MaxRank) return new MaxRankTree(rootLabel);
+    if (session.getTreeType() == TreeType::Root) return new RootTree(rootLabel);
 }
 
 //---------------------------------------CycleTree--------------------------------------------------------------
@@ -61,7 +61,7 @@ const CycleTree &CycleTree::operator=(const CycleTree &other) {
 
 int CycleTree::traceTree() const {
     const CycleTree *outputTree = this;
-    for (int i = 0; i <= currCycle; i = i + 1) {
+    for (int i = 0; i < currCycle; i = i + 1) {
         if(!outputTree->children.empty()) outputTree = (CycleTree *) outputTree->children[0];
     }
     return outputTree->node;

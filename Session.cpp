@@ -29,9 +29,9 @@ void Session::fromJSON(const std::string &path) {
     setGraph(g1);
 
     //init treeType
-    if (js["tree"] == 'C') treeType = TreeType::Cycle;
-    if (js["tree"] == 'M') treeType = TreeType::MaxRank;
-    if (js["tree"] == 'R') treeType = TreeType::Root;
+    if (js["tree"] == "C") treeType = TreeType::Cycle;
+    if (js["tree"] == "M") treeType = TreeType::MaxRank;
+    if (js["tree"] == "R") treeType = TreeType::Root;
 
     //init Agents
     for (auto agent:js["agents"]) {
@@ -104,8 +104,11 @@ void Session::infectNode(int node) {
 void Session::enqueueInfected(int node) { infectedQueue.push(node); }
 
 int Session::dequeueInfected() {
-    int output = infectedQueue.front();
-    infectedQueue.pop();
+    int output = -1;
+    if(!infectedQueue.empty()){
+         output = infectedQueue.front();
+        infectedQueue.pop();
+    }
     return output;
 }
 
