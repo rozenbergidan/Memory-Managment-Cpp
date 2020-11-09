@@ -20,6 +20,9 @@ void Tree::addChild(const Tree &child) {
     children.push_back(child.clone());
 }
 
+Tree* Tree::getLastChild(){
+return children[children.size()-1];
+}
 
 Tree::~Tree() {
     for (int i = 0; i < children.size(); i = i + 1) {

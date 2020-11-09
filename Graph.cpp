@@ -41,12 +41,14 @@ Tree *Graph::BFS(const Session &session, int root) { //if you use this func its 
         for (int i = 0; i < edges.size(); i = i + 1) {
             if (edges[tree->getNode()][i] == 1 & isVisited[i] == false) {
                 Tree *node = Tree::createTree(session, i);
-                nodeQueue.push(node);
                 tree->addChild(*node);
+                nodeQueue.push(tree->getLastChild());
+
                 isVisited[i] = true;
+                if (node->getNode() != root) delete node;
             }
         }
-        if (tree->getNode() != root) delete tree;
+
     }
 
 

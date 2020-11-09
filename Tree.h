@@ -12,8 +12,8 @@ public:
 
     void addChild(const Tree &child);
 
-    //my code
-    //////////////////////////////////////////////////
+    Tree* getLastChild(); //TODO: check in office hours if i should return const reffernce.
+
     Tree(const Tree &other); //copy constructor
     virtual ~Tree();//destructor
     virtual const Tree &operator=(const Tree &other);//copy assignment operator
@@ -21,7 +21,7 @@ public:
 
     int getNode() const;
 
-    /////////////////////////////////////////////////
+
     static Tree *createTree(const Session &session, int rootLabel);
 
     virtual int traceTree() const = 0;
