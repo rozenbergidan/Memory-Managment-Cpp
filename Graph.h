@@ -21,6 +21,8 @@ public:
 
     bool isAllActiveOrIsolated();
 
+    std::vector<std::vector<int>> graphToJson();
+    std::vector<int> infectedToJson();
 
     Tree* BFS(const Session& session, int root);
 

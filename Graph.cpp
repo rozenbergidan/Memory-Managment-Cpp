@@ -84,3 +84,15 @@ bool Graph::isAllActiveOrIsolated() {
     if(isAllHealthy) return false;
     return true;
 }
+
+std::vector<std::vector<int>> Graph::graphToJson() {
+    return edges;
+}
+
+std::vector<int> Graph::infectedToJson() {
+    std::vector<int> output({});
+    for(int i=0; i<NUM_OF_NODES;i++){
+        if(isInfected(i)) output.push_back(i);
+    }
+    return output;
+}
