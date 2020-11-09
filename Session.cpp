@@ -45,6 +45,16 @@ void Session::fromJSON(const std::string &path) {
     }
 }
 
+void Session::toJson() {
+    ofstream jsonFile("output.json");
+    json js;
+
+    js["graph"]=g.graphToJson();
+    js["infected"]=g.infectedToJson();
+
+    js>>jsonFile;
+}
+
 void Session::simulate() {
     while (!isAllActiveOrIsolated()) {
         int agentsSize = agents.size();
@@ -53,7 +63,7 @@ void Session::simulate() {
         }
         cycleCount = cycleCount + 1;
     }
-    //TODO toJson
+    toJson();
     //TODO clear all DATA
 }
 
