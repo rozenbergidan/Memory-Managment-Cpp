@@ -51,8 +51,9 @@ void Session::toJson() {
 
     js["graph"]=g.graphToJson();
     js["infected"]=g.infectedToJson();
-
-    js>>jsonFile;
+    std::cout<<js["graph"]<<endl;
+    std::cout<<js["infected"];
+    //js>>jsonFile;
 }
 
 void Session::simulate() {

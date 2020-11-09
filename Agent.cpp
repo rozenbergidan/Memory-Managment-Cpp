@@ -45,6 +45,7 @@ void Virus::act() {
     if (!isActive) {
         isActive = true;
         session.enqueueInfected(nodeInd);
+        //session.infectNode(nodeInd);
     }
     int nodeToInfect = session.getNeighborToInfect(nodeInd);
     if (nodeToInfect != -1) {
