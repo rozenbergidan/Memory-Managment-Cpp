@@ -38,6 +38,7 @@ void Session::fromJSON(const std::string &path) {
         if (agent[0] == "V") {
             Agent *virus = new Virus(agent[1], *this);
             addAgent(*virus);
+            infectNode(agent[1]);
         } else {
             Agent *contractTrace = new ContactTracer(*this);
             addAgent(*contractTrace);
