@@ -50,7 +50,7 @@ void Virus::act() {
     if (nodeToInfect != -1) {
         Virus *newVirus = new Virus(nodeToInfect, session);
         session.addAgent(*newVirus);
-        session.addInfected(nodeToInfect);
+        session.infectNode(nodeToInfect);
         delete newVirus;
     }
 

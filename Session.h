@@ -42,7 +42,7 @@ public:
 
     int getCycleCount() const;
 
-    void addInfected(int node);
+    void infectNode(int node);
 
 
 private:

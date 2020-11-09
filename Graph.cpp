@@ -55,3 +55,4 @@ void Graph::isolateNode(int node) {
         edges[i][node] = 0;
     }
 }
+

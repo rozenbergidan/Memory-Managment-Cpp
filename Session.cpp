@@ -90,10 +90,6 @@ bool Session::isNodeInfected(int node) {
     return false;
 }
 
-void Session::addInfected(int node) {
-    infected.push_back(node);
-}
-
 int Session::getCycleCount() const { return cycleCount; }
 
 
