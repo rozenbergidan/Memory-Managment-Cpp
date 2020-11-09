@@ -12,12 +12,15 @@ public:
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
 
+    int getNeighborToInfect(int node);
+
+
     void isolateNode(int node);
 
     Tree* BFS(const Session& session, int root);
 
-    std::vector<int> getNeighbors(int i); //return thr neighbors of i
 private:
+    const int NUM_OF_NODES;
     std::vector<std::vector<int>> edges;
     bool *infectedTracer;
 };

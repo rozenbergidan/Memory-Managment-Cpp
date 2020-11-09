@@ -75,13 +75,7 @@ Tree* Session::BFS(int node) {
     return g.BFS(*this,node);
 }
 
-int Session::getNeighborToInfect(int node) {
-    for(int i:g.getNeighbors(node)){
-        if(!isNodeInfected(i))
-            return i;
-    }
-    return -1;
-}
+int Session::getNeighborToInfect(int node) {return g.getNeighborToInfect(node);}
 
 bool Session::isNodeInfected(int node) {
     for(int i:infected){

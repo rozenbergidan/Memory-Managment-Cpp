@@ -7,10 +7,17 @@
 
 using namespace std;
 
-Graph::Graph(vector <vector<int>> matrix) :edges(matrix){};
+Graph::Graph(vector <vector<int>> matrix) :NUM_OF_NODES(matrix.size()),edges(matrix), infectedTracer(new bool[NUM_OF_NODES]){
+    for(int i = 0; i < NUM_OF_NODES; i = i + 1){
+        infectedTracer[i] = false;
+    }
+};
 
 const Graph & Graph::operator=(const Graph &other) {
     edges = other.edges;
+    for(int i = 0; i < NUM_OF_NODES; i = i + 1){
+        infectedTracer[i] = other.infectedTracer[i];
+    }
 }
 //TODO complete BFS
 Tree* Graph ::BFS(const Session& session, int root) { //if you use this func its up to you to delete the tree!!
@@ -40,17 +47,26 @@ Tree* Graph ::BFS(const Session& session, int root) { //if you use this func its
     return BFStree;
 }
 
-std::vector<int> Graph::getNeighbors(int i) {
-    vector<int> output;
-    for(int j=0;j<edges[i].size();j++){
-        if(edges[i][j]==1)output.push_back(j);
-    }
-    return output;
-}
 
 void Graph::isolateNode(int node) {
     for(int i = 0 ; i < edges.size(); i = i + 1){
         edges[node][i] = 0;
         edges[i][node] = 0;
     }
+}
+
+void Graph::infectNode(int nodeInd){
+    if((0<= nodeInd) & (nodeInd < NUM_OF_NODES)) infectedTracer[nodeInd] = true;
+}
+
+bool Graph::isInfected(int nodeInd){
+    if((0<= nodeInd) & (nodeInd < NUM_OF_NODES)) return infectedTracer[nodeInd];
+    return false; // if nodeInd is not in the graph, return false.
+}
+
+int Graph::getNeighborToInfect(int node) {// return the nodeInd to infect, -1 if no one exist
+    for(int i = 0; i < NUM_OF_NODES; i = i + 1){
+        if(edges[node][i] == 1 & !isInfected(i)) return i;
+    }
+    return -1;
 }
