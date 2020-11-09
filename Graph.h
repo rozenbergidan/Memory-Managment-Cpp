@@ -13,13 +13,13 @@ public:
     bool isInfected(int nodeInd);
 
     void isolateNode(int node);
-    //my code
-    /////////////////////////////////////////////////////////////////////////
+
     Tree* BFS(const Session& session, int root);
-    /////////////////////////////////////////////////////////////////////////
+
     std::vector<int> getNeighbors(int i); //return thr neighbors of i
 private:
     std::vector<std::vector<int>> edges;
+    bool *infectedTracer;
 };
 
 #endif

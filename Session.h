@@ -49,13 +49,15 @@ private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
-    void fromJSON(const std::string &path);
+
 
     int cycleCount;
-    //TODO: changed infected to array
+    //TODO: changed infected to array and move the logic to graph
     std::vector<bool> infected;
     //bool[] *infected;
     std::queue<int> infectedQueue;
+
+    void fromJSON(const std::string &path);
 
 
 };

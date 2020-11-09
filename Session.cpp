@@ -23,18 +23,20 @@ void Session::fromJSON(const std::string &path) {
     auto graphh=js["graph"];
     auto treeTypee=js["tree"];
 
+
     //init Graph for g
     std::vector<std::vector<int>> matrix;
     for(std::vector<int> row:graphh){
         matrix.push_back(row);
     }
     Graph g1(matrix);
+    //TODO: ??use here setGraph method??
     g=g1;
 
     //init treeType
-    if(js["tree"]=='C') treeType=TreeType::Cycle;
-    if(js["tree"]=='M') treeType=TreeType::MaxRank;
-    if(js["tree"]=='R') treeType=TreeType::Root;
+    if(js["tree"]=="C") treeType=TreeType::Cycle;
+    if(js["tree"]=="M") treeType=TreeType::MaxRank;
+    if(js["tree"]=="R") treeType=TreeType::Root;
 
     //init Agents
     for(auto agent:js["agents"]){
