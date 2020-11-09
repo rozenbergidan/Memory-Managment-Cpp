@@ -42,14 +42,15 @@ public:
 
     int getCycleCount() const;
 
-    void addInfected(int node);
+    void infectNode(int node);
 
 
 private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
-
+    void fromJSON(const std::string &path);
+    void toJson();
 
     int cycleCount;
     //TODO: changed infected to array and move the logic to graph

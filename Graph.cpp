@@ -7,40 +7,43 @@
 
 using namespace std;
 
+
 Graph::Graph(vector <vector<int>> matrix) :NUM_OF_NODES(matrix.size()),edges(matrix), infectedTracer(new bool[NUM_OF_NODES]){
     for(int i = 0; i < NUM_OF_NODES; i = i + 1){
         infectedTracer[i] = false;
     }
 };
 
-const Graph & Graph::operator=(const Graph &other) {
+
+const Graph &Graph::operator=(const Graph &other) {
     edges = other.edges;
     for(int i = 0; i < NUM_OF_NODES; i = i + 1){
         infectedTracer[i] = other.infectedTracer[i];
     }
 }
+
 //TODO complete BFS
-Tree* Graph ::BFS(const Session& session, int root) { //if you use this func its up to you to delete the tree!!
-    queue<Tree*> nodeQueue;
-    bool isVisited [edges.size()];
-    for (int i = 0; i < edges.size(); i = i + 1){
+Tree *Graph::BFS(const Session &session, int root) { //if you use this func its up to you to delete the tree!!
+    queue<Tree *> nodeQueue;
+    bool isVisited[edges.size()];
+    for (int i = 0; i < edges.size(); i = i + 1) {
         isVisited[i] = false;
     }
     isVisited[root] = true;
-    Tree* BFStree = Tree::createTree(session, root);
+    Tree *BFStree = Tree::createTree(session, root);
     nodeQueue.push(BFStree);
-    while (nodeQueue.size() != 0){
-        Tree* tree = nodeQueue.front();
+    while (nodeQueue.size() != 0) {
+        Tree *tree = nodeQueue.front();
         nodeQueue.pop();
-        for (int i = 0; i < edges.size();i = i + 1){
-            if(edges[tree->getNode()][i] == 1 & isVisited[i] == false){
-                Tree* node = Tree::createTree(session,i);
+        for (int i = 0; i < edges.size(); i = i + 1) {
+            if (edges[tree->getNode()][i] == 1 & isVisited[i] == false) {
+                Tree *node = Tree::createTree(session, i);
                 nodeQueue.push(node);
                 tree->addChild(*node);
                 isVisited[i] = true;
             }
         }
-        if(tree->getNode() != root) delete tree;
+        if (tree->getNode() != root) delete tree;
     }
 
 
@@ -49,7 +52,7 @@ Tree* Graph ::BFS(const Session& session, int root) { //if you use this func its
 
 
 void Graph::isolateNode(int node) {
-    for(int i = 0 ; i < edges.size(); i = i + 1){
+    for (int i = 0; i < edges.size(); i = i + 1) {
         edges[node][i] = 0;
         edges[i][node] = 0;
     }
@@ -70,3 +73,4 @@ int Graph::getNeighborToInfect(int node) {// return the nodeInd to infect, -1 if
     }
     return -1;
 }
+
