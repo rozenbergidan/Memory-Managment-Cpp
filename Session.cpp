@@ -23,6 +23,7 @@ void Session::fromJSON(const std::string &path) {
     auto graphh = js["graph"];
     auto treeTypee = js["tree"];
 
+
     //init Graph for g
     std::vector<std::vector<int>> matrix;
     for (std::vector<int> row:graphh) {
