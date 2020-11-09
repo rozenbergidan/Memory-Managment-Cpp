@@ -48,15 +48,12 @@ private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
+
     void fromJSON(const std::string &path);
     void toJson();
 
     int cycleCount;
     std::queue<int> infectedQueue;
-
-    void fromJSON(const std::string &path);
-
-
-};
+    };
 
 #endif

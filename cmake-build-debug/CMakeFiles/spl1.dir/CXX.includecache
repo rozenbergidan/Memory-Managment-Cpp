@@ -6,11 +6,21 @@
 
 #IncludeRegexTransform: 
 
+/home/spl211/Desktop/SPL/SPL1/spl1/Agent.cpp
+Agent.h
+/home/spl211/Desktop/SPL/SPL1/spl1/Agent.h
+
 /home/spl211/Desktop/SPL/SPL1/spl1/Agent.h
 vector
 -
 Session.h
 /home/spl211/Desktop/SPL/SPL1/spl1/Session.h
+
+/home/spl211/Desktop/SPL/SPL1/spl1/Graph.cpp
+queue
+-
+Graph.h
+/home/spl211/Desktop/SPL/SPL1/spl1/Graph.h
 
 /home/spl211/Desktop/SPL/SPL1/spl1/Graph.h
 vector
@@ -39,6 +49,12 @@ Graph.h
 /home/spl211/Desktop/SPL/SPL1/spl1/Graph.h
 Agent.h
 /home/spl211/Desktop/SPL/SPL1/spl1/Agent.h
+
+/home/spl211/Desktop/SPL/SPL1/spl1/Tree.cpp
+Tree.h
+/home/spl211/Desktop/SPL/SPL1/spl1/Tree.h
+Session.h
+/home/spl211/Desktop/SPL/SPL1/spl1/Session.h
 
 /home/spl211/Desktop/SPL/SPL1/spl1/Tree.h
 vector
@@ -377,4 +393,10 @@ limits
 -
 type_traits
 -
+
+/home/spl211/Desktop/SPL/SPL1/spl1/main.cpp
+iostream
+-
+Session.h
+/home/spl211/Desktop/SPL/SPL1/spl1/Session.h
 

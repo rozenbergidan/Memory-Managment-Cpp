@@ -26,8 +26,9 @@ public:
 
 
 private:
-    const int NUM_OF_NODES;
+
     std::vector<std::vector<int>> edges;
+    int NUM_OF_NODES; //TODO: try to change to const;
     bool *infectedTracer;
 };
 

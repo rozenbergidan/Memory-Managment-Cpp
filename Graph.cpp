@@ -8,7 +8,7 @@
 using namespace std;
 
 
-Graph::Graph(vector <vector<int>> matrix) :NUM_OF_NODES(matrix.size()),edges(matrix), infectedTracer(new bool[NUM_OF_NODES]){
+Graph::Graph(vector <vector<int>> matrix) :edges(matrix), NUM_OF_NODES(edges.size()),infectedTracer(new bool[NUM_OF_NODES]){
     for(int i = 0; i < NUM_OF_NODES; i = i + 1){
         infectedTracer[i] = false;
     }
@@ -20,6 +20,7 @@ const Graph &Graph::operator=(const Graph &other) {
     for(int i = 0; i < NUM_OF_NODES; i = i + 1){
         infectedTracer[i] = other.infectedTracer[i];
     }
+    NUM_OF_NODES = other.NUM_OF_NODES;
 }
 
 //TODO complete BFS
@@ -75,8 +76,11 @@ int Graph::getNeighborToInfect(int node) {// return the nodeInd to infect, -1 if
 }
 
 bool Graph::isAllActiveOrIsolated() {
+    bool isAllHealthy = true;
     for (int i = 0; i < NUM_OF_NODES; i++) {
         if (infectedTracer[i] & (getNeighborToInfect(i) != -1)) return false;
+        if (infectedTracer[i]) isAllHealthy = false;
     }
+    if(isAllHealthy) return false;
     return true;
 }
