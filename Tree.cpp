@@ -59,7 +59,7 @@ const CycleTree &CycleTree::operator=(const CycleTree &other) {
 int CycleTree::traceTree() const {
     const CycleTree *outputTree = this;
     for (int i = 0; i <= currCycle; i = i + 1) {
-        outputTree = (CycleTree *) outputTree->children[0];
+        if(!outputTree->children.empty()) outputTree = (CycleTree *) outputTree->children[0];
     }
     return outputTree->node;
 }
