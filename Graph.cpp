@@ -74,3 +74,9 @@ int Graph::getNeighborToInfect(int node) {// return the nodeInd to infect, -1 if
     return -1;
 }
 
+bool Graph::isAllActiveOrIsolated() {
+    for (int i = 0; i < NUM_OF_NODES; i++) {
+        if (infectedTracer[i] & (getNeighborToInfect(i) != -1)) return false;
+    }
+    return true;
+}

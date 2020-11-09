@@ -9,7 +9,7 @@
 using namespace std;
 using json = nlohmann::json;
 
-Session::Session(const std::string &path) : g({}), treeType(), agents(), cycleCount(0), infected({}), infectedQueue() {
+Session::Session(const std::string &path) : g({}), treeType(), agents(), cycleCount(0), infectedQueue() {
     fromJSON(path);
 
 }
@@ -19,14 +19,10 @@ void Session::fromJSON(const std::string &path) {
     json js;
     js << jsonFile;
 
-    auto agentss = js["agents"];
-    auto graphh = js["graph"];
-    auto treeTypee = js["tree"];
-
 
     //init Graph for g
     std::vector<std::vector<int>> matrix;
-    for (std::vector<int> row:graphh) {
+    for (std::vector<int> row:js["graph"]) {
         matrix.push_back(row);
     }
     Graph g1(matrix);
@@ -78,14 +74,6 @@ Tree *Session::BFS(int node) {
 int Session::getNeighborToInfect(int node) {return g.getNeighborToInfect(node);}
 
 
-bool Session::isNodeInfected(int node) {
-    for (int i:infected) {
-        if (i == node)
-            return true;
-    }
-    return false;
-}
-
 int Session::getCycleCount() const { return cycleCount; }
 
 
@@ -96,6 +84,10 @@ TreeType Session::getTreeType() const {
 void Session::isolateNode(int node) {
     g.isolateNode(node);
 }
+void Session::infectNode(int node) {
+    g.infectNode(node);
+}
+
 
 void Session::enqueueInfected(int node) { infectedQueue.push(node); }
 
@@ -106,8 +98,5 @@ int Session::dequeueInfected() {
 }
 
 bool Session::isAllActiveOrIsolated() {
-    for (int i = 0; i < infected.size(); i++) {
-        if (infected[i] & (getNeighborToInfect(i) != -1)) return false;
-    }
-    return true;
+    return g.isAllActiveOrIsolated();
 }

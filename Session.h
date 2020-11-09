@@ -36,7 +36,6 @@ public:
 
     int getNeighborToInfect(int node);// return the node neighbor to getNeighborToInfect, return -1 is all neighbors are infected
 
-    bool isNodeInfected(int node); //return true if node is infected, and false otherwise
 
     bool isAllActiveOrIsolated(); //return True if all active nodes are isolated
 
@@ -53,9 +52,6 @@ private:
     void toJson();
 
     int cycleCount;
-    //TODO: changed infected to array and move the logic to graph
-    std::vector<bool> infected;
-    //bool[] *infected;
     std::queue<int> infectedQueue;
 
     void fromJSON(const std::string &path);

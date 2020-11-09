@@ -19,7 +19,11 @@ public:
 
     void isolateNode(int node);
 
+    bool isAllActiveOrIsolated();
+
+
     Tree* BFS(const Session& session, int root);
+
 
 private:
     const int NUM_OF_NODES;
