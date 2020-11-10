@@ -42,7 +42,7 @@ public:
 
     ///Rule of 3
     CycleTree(const CycleTree &other); //copy constructor
-    //virtual ~CycleTree();// destructor ------ TODO: check if nesesary to override the destrudtor
+    //virtual ~CycleTree();// destructor ------ TODO: check if nesesary to override the destrudtor ANSWER: NOT NESSESRT!
     virtual const CycleTree &operator=(const CycleTree &other);//copy assignment operator
     virtual CycleTree *clone() const;
 

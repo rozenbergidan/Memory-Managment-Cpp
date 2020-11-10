@@ -42,9 +42,11 @@ void Session::fromJSON(const std::string &path) {
             Agent *virus = new Virus(agent[1], *this);
             addAgent(*virus);
             infectNode(agent[1]);
+            delete virus;
         } else {
             Agent *contractTrace = new ContactTracer(*this);
             addAgent(*contractTrace);
+            delete contractTrace;
         }
     }
 }
@@ -79,6 +81,12 @@ void Session::addAgent(const Agent &agent) {
 
 void Session::setGraph(const Graph &graph) {
     g = graph;
+}
+
+Session::~Session() {
+    for (Agent* agent: agents){
+        delete agent;
+    }
 }
 
 Tree *Session::BFS(int node) {
