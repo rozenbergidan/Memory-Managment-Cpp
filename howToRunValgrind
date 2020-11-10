@@ -1,0 +1,11 @@
+1.type 'make' in terminal
+~   after u use the 'make' command, the bin folder should not be empty!
+~   the last line of make should be:
+        Building target: cTrace
+        Invoking: C++ Linker
+        g++ -o bin/cTrace bin/Session.o bin/Agent.o bin/Graph.o bin/main.o bin/Tree.o
+        Finished building target: cTrace
+2. type 'valgrind --leak-check=full --show-reachable=yes ./bin/cTrace [config file path]'
+~   change [config file path] with the path of the config.json
+
+
