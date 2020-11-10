@@ -13,6 +13,9 @@ Session::Session(const std::string &path) : g({}), treeType(), agents(), cycleCo
     fromJSON(path);
 
 }
+///========Rule of 5
+
+
 
 void Session::fromJSON(const std::string &path) {
     ifstream jsonFile(path);
@@ -47,14 +50,14 @@ void Session::fromJSON(const std::string &path) {
 }
 
 void Session::toJson() {
-    ofstream jsonFile("output.json");
+    ofstream jsonFile("../output.json");
     json js;
 
     js["graph"]=g.graphToJson();
     js["infected"]=g.infectedToJson();
     std::cout<<js["graph"]<<endl;
     std::cout<<js["infected"];
-    //js>>jsonFile;
+    js>>jsonFile;
 }
 
 void Session::simulate() {

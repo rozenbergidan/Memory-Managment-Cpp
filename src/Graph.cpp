@@ -13,15 +13,12 @@ Graph::Graph(vector <vector<int>> matrix) :edges(matrix), NUM_OF_NODES(edges.siz
     for(int i = 0; i < NUM_OF_NODES; i = i + 1){
         infectedTracer.push_back(false);
     }
-};
+}
 
-
+///========Rule of 5
 const Graph &Graph::operator=(const Graph &other) {
     edges = other.edges;
     infectedTracer = other.infectedTracer;
-//    for(int i = 0; i < NUM_OF_NODES; i = i + 1){
-//        infectedTracer[i] = other.infectedTracer[i];
-//    }
     NUM_OF_NODES = other.NUM_OF_NODES;
 }
 

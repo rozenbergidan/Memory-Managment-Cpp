@@ -19,6 +19,7 @@ enum TreeType{
 
 class Session{
 public:
+
     Session(const std::string& path);
     
     void simulate();
@@ -29,19 +30,18 @@ public:
     int dequeueInfected(); //return -1 if empty
     TreeType getTreeType() const;
 
-    ///our code
+    ///Our Functions
     Tree* BFS(int node); //return the BFS tree from g, reducing coupling
 
-    void isolateNode(int node); //isolate the node from its neighbors calls to graph function
+    void isolateNode(int node); //isolate the node from its neighbors, calls to graph::isolateNodee
 
     int getNeighborToInfect(int node);// return the node neighbor to getNeighborToInfect, return -1 is all neighbors are infected
 
-
-    bool isAllActiveOrIsolated(); //return True if all active nodes are isolated
+    bool isAllActiveOrIsolated(); //return True if all active nodes are isolated or if all nodes are Active
 
     int getCycleCount() const;
 
-    void infectNode(int node);
+    void infectNode(int node); //make a node active, calls to graph::infectNode
 
 
 private:
@@ -49,9 +49,10 @@ private:
     TreeType treeType;
     std::vector<Agent*> agents;
 
-    void fromJSON(const std::string &path);
-    void toJson();
-
+    ///our from/to JSon functions
+    void fromJSON(const std::string &path); //read a json file from path, and build objects accordingly
+    void toJson(); //write json file at "../output.json"
+    /// Our Data members
     int cycleCount;
     std::queue<int> infectedQueue;
     };

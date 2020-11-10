@@ -7,29 +7,36 @@
 
 class Graph {
 public:
+
     Graph(std::vector<std::vector<int>> matrix);
 
-    const Graph &operator=(const Graph &other); //copy assignment operator
     void infectNode(int nodeInd);
 
     bool isInfected(int nodeInd);
+    //Rule of 5
+    const Graph &operator=(const Graph &other); //copy assignment operator
 
-    int getNeighborToInfect(int node);
 
 
-    void isolateNode(int node);
+    ///Our Functions
+    int getNeighborToInfect(int node); //return the neighbor of infected node which is not yet active
 
-    bool isAllActiveOrIsolated();
+    void isolateNode(int node); //delete all node's edges
 
-    std::vector<std::vector<int>> graphToJson();
-    std::vector<int> infectedToJson();
+    bool isAllActiveOrIsolated(); //return True if all active nodes are isolated or if all nodes are Active
 
-    Tree* BFS(const Session& session, int root);
+    std::vector<std::vector<int>> graphToJson(); //return the json format for the graph
+
+    std::vector<int> infectedToJson(); //return the json format for infected nodes
+
+    Tree* BFS(const Session& session, int root); //return the BFS Tree from root
 
 
 private:
 
     std::vector<std::vector<int>> edges;
+
+    ///Our data members
     int NUM_OF_NODES; //TODO: try to change to const;
     std::vector<bool> infectedTracer;
 };

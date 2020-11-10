@@ -10,18 +10,11 @@ using namespace std;
 
 Tree::Tree(int rootLabel) : node(rootLabel) {}
 
+///========Rule of 3
 Tree::Tree(const Tree &other) : children(), node(other.node) {
     for (int i = 0; i < other.children.size(); i = i + 1) {
         children.push_back(other.children[i]);
     }
-}
-
-void Tree::addChild(const Tree &child) {
-    children.push_back(child.clone());
-}
-
-Tree* Tree::getLastChild(){
-return children[children.size()-1];
 }
 
 Tree::~Tree() {
@@ -33,6 +26,15 @@ Tree::~Tree() {
 const Tree &Tree::operator=(const Tree &other) {
     node = other.node;
     children = other.children;//TODO: check if the vector = operator is good for us... if not go through all the vector.
+}
+
+
+void Tree::addChild(const Tree &child) {
+    children.push_back(child.clone());
+}
+
+Tree* Tree::getLastChild(){
+return children[children.size()-1];
 }
 
 int Tree::getNode() const {
@@ -48,8 +50,8 @@ Tree *Tree::createTree(const Session &session, int rootLabel) {
 //---------------------------------------CycleTree--------------------------------------------------------------
 CycleTree::CycleTree(int rootLabel, int currCycle) : Tree(rootLabel), currCycle(currCycle) {}
 
+///========Rule of 5
 CycleTree::CycleTree(const CycleTree &other) : Tree(other), currCycle(other.currCycle) {}
-
 
 const CycleTree &CycleTree::operator=(const CycleTree &other) {
     children = other.children;
@@ -57,6 +59,10 @@ const CycleTree &CycleTree::operator=(const CycleTree &other) {
     currCycle = other.currCycle;
     return *this;
 
+}
+
+CycleTree *CycleTree::clone() const {
+    return new CycleTree(*this);
 }
 
 int CycleTree::traceTree() const {
@@ -67,14 +73,17 @@ int CycleTree::traceTree() const {
     return outputTree->node;
 }
 
-CycleTree *CycleTree::clone() const {
-    return new CycleTree(*this);
-}
+
 
 //---------------------------------------MaxRankTree------------------------------------------------------------
 MaxRankTree::MaxRankTree(const MaxRankTree &other) : Tree(other) {}
 
+///========Rule of 5
 MaxRankTree::MaxRankTree(int rootLabel) : Tree(rootLabel) {}
+
+MaxRankTree *MaxRankTree::clone() const {
+    return new MaxRankTree(*this);
+}
 
 int MaxRankTree::traceTree() const {
     const MaxRankTree *max = this;
@@ -99,23 +108,22 @@ const MaxRankTree *MaxRankTree::traceTreeRecursion(int currMax) const {
     return output;
 }
 
-MaxRankTree *MaxRankTree::clone() const {
-    return new MaxRankTree(*this);
-}
+
 
 //---------------------------------------RootTree---------------------------------------------------------------
 RootTree::RootTree(const RootTree &other) : Tree(other) {}
 
+///========Rule of 3
 RootTree::RootTree(int rootLabel) : Tree(rootLabel) {}
+
+RootTree *RootTree::clone() const {
+    return new RootTree(*this);
+}
 
 int RootTree::traceTree() const {
     return node;
 }
 
-RootTree *RootTree::clone() const {
-    return new RootTree(*this);
-}
-//--------------------------------------------------------------------------------------------------------------
 
 
 

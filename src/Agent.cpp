@@ -8,10 +8,12 @@ using namespace std;
 
 //---------------------------------------Agent---------------------------------------------------------------
 Agent::Agent(Session &session) : session(session) {}
+///========Rule of 3
 
 //---------------------------------------ContactTracer---------------------------------------------------------------
 ContactTracer::ContactTracer(Session &session) : Agent(session) {};
 
+///========Rule of 5
 ContactTracer *ContactTracer::clone() const {
     ContactTracer *output = new ContactTracer(session);
     return output;
@@ -36,6 +38,7 @@ void ContactTracer::act() {
 //---------------------------------------Virus---------------------------------------------------------------
 Virus::Virus(int nodeInd, Session &session) : Agent(session), nodeInd(nodeInd), isActive(false) {}
 
+///========Rule of 5
 Virus *Virus::clone() const {
     Virus *output = new Virus(nodeInd, session);
     return output;

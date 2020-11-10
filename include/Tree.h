@@ -6,25 +6,26 @@
 
 class Session;
 
+//---------------------------------------Tree Abstract Class--------------------------------------------------------------
 class Tree {
 public:
     Tree(int rootLabel);
 
     void addChild(const Tree &child);
 
-    Tree* getLastChild(); //TODO: check in office hours if i should return const reffernce.
-
+    ///Rule of 3
     Tree(const Tree &other); //copy constructor
     virtual ~Tree();//destructor
     virtual const Tree &operator=(const Tree &other);//copy assignment operator
     virtual Tree *clone() const = 0;
 
-    int getNode() const;
-
-
     static Tree *createTree(const Session &session, int rootLabel);
 
     virtual int traceTree() const = 0;
+
+    ///Out Functions
+    Tree* getLastChild(); //TODO: check in office hours if i should return const reffernce.
+    int getNode() const;
 
 protected:
     std::vector<Tree *> children;
@@ -39,7 +40,7 @@ public:
 
     virtual int traceTree() const;
 
-    //my code
+    ///Rule of 3
     CycleTree(const CycleTree &other); //copy constructor
     //virtual ~CycleTree();// destructor ------ TODO: check if nesesary to override the destrudtor
     virtual const CycleTree &operator=(const CycleTree &other);//copy assignment operator
@@ -49,7 +50,6 @@ private:
     int currCycle;
 };
 
-//-------------------------------------------------------------------------------------
 //---------------------------------MaxRankTree-------------------------------------------
 class MaxRankTree : public Tree {
 public:
@@ -57,7 +57,7 @@ public:
 
     virtual int traceTree() const;
 
-    //my code
+    //Rule of 5
     MaxRankTree(
             const MaxRankTree &other); //copy constructor ------ TODO: check if nesesary to override the copy constructor
     //virtual ~MaxRankTree();// destructor------ TODO: check if nesesary to override the destrudtor
@@ -65,6 +65,7 @@ public:
     virtual MaxRankTree *clone() const;
 
 private:
+    ///Our Function
     const MaxRankTree *traceTreeRecursion(
             int currMax) const;// returns pointer to the node with most childrens that biger then currMax if exsist, and nullptr is not
 };
@@ -76,12 +77,10 @@ public:
 
     virtual int traceTree() const;
 
-    //my code
+    ///Rule of 3
     RootTree(const RootTree &other); //copy constructor ------ TODO: check if nesesary to override
     //virtual ~RootTree();// destructor------ TODO: check if nesesary to override the destrudtor
     //virtual const RootTree& operator=(const RootTree& other);//copy assignment operator ------ TODO: check if nesesary to override
-
-
     virtual RootTree *clone() const;
 };
 //--------------------------------------------------------------------------------------
