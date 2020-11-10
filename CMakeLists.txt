@@ -3,4 +3,4 @@ project(spl1)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(spl1 main.cpp Session.cpp Session.h Graph.cpp Graph.h Agent.cpp Agent.h Tree.cpp Tree.h)
+add_executable(spl1 ../src/main.cpp ../src/Session.cpp ../include/Session.h ../src/Graph.cpp ../include/Graph.h ../src/Agent.cpp ../include/Agent.h ../src/Tree.cpp ../include/Tree.h)

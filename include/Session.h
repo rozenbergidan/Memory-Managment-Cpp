@@ -1,12 +1,12 @@
 #ifndef SESSION_H_
 #define SESSION_H_
 
-#include "json.hpp"
+#include "../include/json.hpp"
 #include <vector>
 #include <queue>
 #include <string>
-#include "Graph.h"
-#include "Agent.h"
+#include "../include/Graph.h"
+#include "../include/Agent.h"
 
 
 class Agent;

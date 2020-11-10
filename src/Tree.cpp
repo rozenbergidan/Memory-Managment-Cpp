@@ -3,8 +3,8 @@
 //
 
 
-#include "Tree.h"
-#include "Session.h"
+#include "../include/Tree.h"
+#include "../include/Session.h"
 
 using namespace std;
 

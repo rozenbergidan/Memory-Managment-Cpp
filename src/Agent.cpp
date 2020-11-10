@@ -2,7 +2,7 @@
 // Created by spl211 on 02/11/2020.
 //
 
-#include "Agent.h"
+#include "../include/Agent.h"
 
 using namespace std;
 
