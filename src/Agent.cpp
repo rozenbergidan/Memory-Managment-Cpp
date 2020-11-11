@@ -7,7 +7,8 @@
 using namespace std;
 
 //---------------------------------------Agent---------------------------------------------------------------
-Agent::Agent() :  {}
+Agent::Agent(){}
+
 ///========Rule of 3
 
 //---------------------------------------ContactTracer---------------------------------------------------------------
@@ -19,9 +20,9 @@ ContactTracer *ContactTracer::clone() const {
     return output;
 }
 
-const ContactTracer &ContactTracer::operator=(const ContactTracer &other) {
-    return *this;
-}
+//const ContactTracer &ContactTracer::operator=(const ContactTracer &other) {
+//    return *this;
+//}
 
 void ContactTracer::act(Session &session) {
     int node = session.dequeueInfected();
@@ -42,7 +43,6 @@ Virus *Virus::clone() const {
     Virus *output = new Virus(nodeInd);
     return output;
 }
-
 void Virus::act(Session &session) {
     if (!isActive) {
         isActive = true;

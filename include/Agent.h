@@ -9,15 +9,12 @@ public:
     Agent();
 
     ///Rule of 3
+    virtual ~Agent()=0; //destructor
     virtual Agent *clone() const = 0;
-    //virtual const Agent& operator=(const Agent& other)=0;
+    //Agent(const Agent &other)=0; //copy constructor
+    //virtual const Agent& operator=(const Agent& other)=0; //copy assignment operator
 
     virtual void act(Session &session) = 0;
-
-
-
-//protected:
-//    Session &session;
 };
 
 //---------------------------------------ContactTracer--------------------------------------------------------------
@@ -26,14 +23,12 @@ public:
     ContactTracer();
 
     ///Rule of 5
-    //virtual ~ContactTracer();
+    //virtual ~ContactTracer(); //destructor
     virtual ContactTracer *clone() const;
-    virtual const ContactTracer &operator=(const ContactTracer &other);
+    //ContactTracer(const ContactTracer &other); //copy constructor
+    //virtual const ContactTracer &operator=(const ContactTracer &other); //copy assignment operator
 
     virtual void act(Session &session);
-
-
-
 
 };
 
@@ -43,9 +38,10 @@ public:
     Virus(int nodeInd);
 
     ///Rule of 5
-    //virtual ~Virus();
+    //Virtual ~Virus(); //destructor
+    //Virus(const Virus &other); //copy constructor
     virtual Virus *clone() const;
-    //virtual const Virus& operator=(const Virus& other);
+    //virtual const Virus& operator=(const Virus& other); //copy assignment operator
 
     virtual void act(Session &session);
 
