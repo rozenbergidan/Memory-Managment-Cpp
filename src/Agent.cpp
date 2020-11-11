@@ -49,6 +49,7 @@ Virus::~Virus() {
 //}
 Virus *Virus::clone() const {
     Virus *output = new Virus(nodeInd);
+    if(isActive) output->isActive = true;
     return output;
 }
 void Virus::act(Session &session) {
