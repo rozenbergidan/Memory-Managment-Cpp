@@ -14,7 +14,7 @@ Tree::Tree(int rootLabel) : children({}), node(rootLabel){}
 Tree::Tree(const Tree &other) : children(), node(other.node) {
     int other_number_of_Children=other.children.size();
     for (int i = 0; i < other_number_of_Children; i = i + 1) {
-        children.push_back(other.children[i]);
+        children.push_back(other.children[i]->clone());//they share the data NOOOOO GOOD!
     }
 }
 
@@ -25,14 +25,26 @@ Tree::~Tree() {
     }
 }
 
+
 const Tree &Tree::operator=(const Tree &other) {
     node = other.node;
-    children = other.children;//TODO: check if the vector = operator is good for us... if not go through all the vector.
-    ///the makefile drop warning for not returning anything
+
+    int OTHER_NUM_OF_CHILDREN = other.children.size();
+    clear();//delete the children.
+    for (int i = 0; i < OTHER_NUM_OF_CHILDREN; i = i + 1){
+        addChild(*other.children[i]);
+    }
     return *this;
 }
 
 
+void Tree:: clear(){
+    int num_of_child = children.size();
+    for(int i = 0; i < num_of_child; i = i + 1){
+        delete children[i]; //TODO: check if good
+    }
+    children.clear();
+}
 void Tree::addChild(const Tree &child) {
     children.push_back(child.clone());
 }
@@ -61,11 +73,8 @@ CycleTree::CycleTree(int rootLabel, int currCycle) : Tree(rootLabel), currCycle(
 CycleTree::CycleTree(const CycleTree &other) : Tree(other), currCycle(other.currCycle) {}
 
 const CycleTree &CycleTree::operator=(const CycleTree &other) {
-    children = other.children;
-    node = other.node;
     currCycle = other.currCycle;
-    return *this;
-
+    Tree::operator=(other);
 }
 
 CycleTree *CycleTree::clone() const {
@@ -131,35 +140,4 @@ RootTree *RootTree::clone() const {
 int RootTree::traceTree() const {
     return node;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
