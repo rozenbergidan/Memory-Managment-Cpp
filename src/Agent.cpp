@@ -7,24 +7,23 @@
 using namespace std;
 
 //---------------------------------------Agent---------------------------------------------------------------
-Agent::Agent(Session &session) : session(session) {}
+Agent::Agent() :  {}
 ///========Rule of 3
 
 //---------------------------------------ContactTracer---------------------------------------------------------------
-ContactTracer::ContactTracer(Session &session) : Agent(session) {};
+ContactTracer::ContactTracer() : Agent() {};
 
 ///========Rule of 5
 ContactTracer *ContactTracer::clone() const {
-    ContactTracer *output = new ContactTracer(session);
+    ContactTracer *output = new ContactTracer();
     return output;
 }
 
 const ContactTracer &ContactTracer::operator=(const ContactTracer &other) {
-    session = other.session;
     return *this;
 }
 
-void ContactTracer::act() {
+void ContactTracer::act(Session &session) {
     int node = session.dequeueInfected();
     if (node != -1) {
         Tree *tree = session.BFS(node);
@@ -36,15 +35,15 @@ void ContactTracer::act() {
 }
 
 //---------------------------------------Virus---------------------------------------------------------------
-Virus::Virus(int nodeInd, Session &session) : Agent(session), nodeInd(nodeInd), isActive(false) {}
+Virus::Virus(int nodeInd) : Agent(), nodeInd(nodeInd), isActive(false) {}
 
 ///========Rule of 5
 Virus *Virus::clone() const {
-    Virus *output = new Virus(nodeInd, session);
+    Virus *output = new Virus(nodeInd);
     return output;
 }
 
-void Virus::act() {
+void Virus::act(Session &session) {
     if (!isActive) {
         isActive = true;
         session.enqueueInfected(nodeInd);
@@ -52,7 +51,7 @@ void Virus::act() {
     }
     int nodeToInfect = session.getNeighborToInfect(nodeInd);
     if (nodeToInfect != -1) {
-        Virus *newVirus = new Virus(nodeToInfect, session);
+        Virus *newVirus = new Virus(nodeToInfect);
         session.addAgent(*newVirus);
         session.infectNode(nodeToInfect);
         delete newVirus;
