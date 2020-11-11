@@ -39,7 +39,7 @@ public:
 
     ///Rule of 5
     //Virtual ~Virus(); //destructor
-    //Virus(const Virus &other); //copy constructor
+    Virus(const Virus &other); //copy constructor
     virtual Virus *clone() const;
     //virtual const Virus& operator=(const Virus& other); //copy assignment operator
 

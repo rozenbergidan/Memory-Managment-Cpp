@@ -19,11 +19,6 @@ ContactTracer *ContactTracer::clone() const {
     ContactTracer *output = new ContactTracer();
     return output;
 }
-
-//const ContactTracer &ContactTracer::operator=(const ContactTracer &other) {
-//    return *this;
-//}
-
 void ContactTracer::act(Session &session) {
     int node = session.dequeueInfected();
     if (node != -1) {
@@ -39,6 +34,14 @@ void ContactTracer::act(Session &session) {
 Virus::Virus(int nodeInd) : Agent(), nodeInd(nodeInd), isActive(false) {}
 
 ///========Rule of 5
+Virus::Virus(const Virus &other) :Agent(), nodeInd(other.nodeInd),isActive(other.isActive){
+
+}
+//const Virus & Virus::operator=(const Virus &other) {
+//    nodeInd=other.nodeInd;
+//    isActive=other.isActive;
+//    return *this;
+//}
 Virus *Virus::clone() const {
     Virus *output = new Virus(nodeInd);
     return output;
