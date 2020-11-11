@@ -47,11 +47,11 @@ int Tree::getNode() const {
 
 Tree *Tree::createTree(const Session &session, int rootLabel) {
     if (session.getTreeType() == TreeType::Cycle) return new CycleTree(rootLabel, session.getCycleCount());
-    if (session.getTreeType() == TreeType::MaxRank) return new MaxRankTree(rootLabel);
-    if (session.getTreeType() == TreeType::Root) return new RootTree(rootLabel);
+    else if (session.getTreeType() == TreeType::MaxRank) return new MaxRankTree(rootLabel);
+    else  return new RootTree(rootLabel); //(session.getTreeType() == TreeType::Root)
 
     ///makefile drop warning for not returning anything
-    return *this;
+    //return *this;
 }
 
 //---------------------------------------CycleTree--------------------------------------------------------------
