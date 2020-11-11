@@ -75,6 +75,7 @@ CycleTree::CycleTree(const CycleTree &other) : Tree(other), currCycle(other.curr
 const CycleTree &CycleTree::operator=(const CycleTree &other) {
     currCycle = other.currCycle;
     Tree::operator=(other);
+    return *this;
 }
 
 CycleTree *CycleTree::clone() const {

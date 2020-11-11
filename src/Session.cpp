@@ -56,19 +56,19 @@ void Session::fromJSON(const std::string &path) {
     CycleTree* t2 = (CycleTree*)g.BFS(*this, 1);
     //t1->currCycle = 2;
     *t1=*t2;
-    int i = 3;
+    //int i = 3;
     delete t1;
     delete t2;
     //////////////////////////////////////////////////
     //init Agents
     for (auto agent:js["agents"]) {
         if (agent[0] == "V") {
-            Agent *virus = new Virus(agent[1], *this);
+            Agent *virus = new Virus(agent[1]);
             addAgent(*virus);
             infectNode(agent[1]);
             delete virus;
         } else {
-            Agent *contractTrace = new ContactTracer(*this);
+            Agent *contractTrace = new ContactTracer();
             addAgent(*contractTrace);
             delete contractTrace;
         }
@@ -93,7 +93,7 @@ void Session::simulate() {
     while (!isAllActiveOrIsolated()) {
         int agentsSize = agents.size();
         for (int i = 0; i < agentsSize; i = i + 1) {
-            agents[i]->act();
+            agents[i]->act(*this);
         }
         cycleCount = cycleCount + 1;
     }

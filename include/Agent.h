@@ -6,53 +6,44 @@
 //---------------------------------------Agent Abstract Class--------------------------------------------------------------
 class Agent {
 public:
-    Agent(Session &session);
+    Agent();
 
     ///Rule of 3
+    virtual ~Agent(); //destructor
     virtual Agent *clone() const = 0;
-    //virtual const Agent& operator=(const Agent& other)=0;
+    //Agent(const Agent &other)=0; //copy constructor
+    //virtual const Agent& operator=(const Agent& other)=0; //copy assignment operator
 
-    virtual void act() = 0;
-
-
-
-protected:
-    Session &session;
+    virtual void act(Session &session) = 0;
 };
 
 //---------------------------------------ContactTracer--------------------------------------------------------------
 class ContactTracer : public Agent {
 public:
-    ContactTracer(Session &session);
+    ContactTracer();
 
     ///Rule of 5
-    //virtual ~ContactTracer();
+    //~ContactTracer(); //destructor
     virtual ContactTracer *clone() const;
-    virtual const ContactTracer &operator=(const ContactTracer &other);
+    //ContactTracer(const ContactTracer &other); //copy constructor
+    //virtual const ContactTracer &operator=(const ContactTracer &other); //copy assignment operator
 
-    virtual void act();
-
-
-
+    virtual void act(Session &session);
 
 };
 
 //---------------------------------------Virus--------------------------------------------------------------
 class Virus : public Agent {
 public:
-    Virus(int nodeInd, Session &session);
+    Virus(int nodeInd);
 
     ///Rule of 5
-    //virtual ~Virus();
+    ~Virus(); //destructor
+    Virus(const Virus &other); //copy constructor
     virtual Virus *clone() const;
-    //virtual const Virus& operator=(const Virus& other);
+    //virtual const Virus& operator=(const Virus& other); //copy assignment operator
 
-    virtual void act();
-
-
-
-    ///Our function
-    const int getNodeInd();
+    virtual void act(Session &session);
 
 private:
     const int nodeInd;
