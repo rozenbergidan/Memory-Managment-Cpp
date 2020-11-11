@@ -27,11 +27,10 @@ public:
     void setGraph(const Graph& graph);
 
     ~Session();
-    
+
     void enqueueInfected(int);
     int dequeueInfected(); //return -1 if empty
     TreeType getTreeType() const;
-
     ///Our Functions
     Tree* BFS(int node); //return the BFS tree from g, reducing coupling
 
