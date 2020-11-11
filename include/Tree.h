@@ -26,6 +26,7 @@ public:
     ///Out Functions
     Tree* getLastChild(); //TODO: check in office hours if i should return const reffernce.
     int getNode() const;
+    void clear();// clear the children vector recurrcively;
 
 protected:
     std::vector<Tree *> children;
@@ -58,16 +59,14 @@ public:
     virtual int traceTree() const;
 
     //Rule of 5
-    MaxRankTree(
-            const MaxRankTree &other); //copy constructor ------ TODO: check if nesesary to override the copy constructor
+    MaxRankTree(const MaxRankTree &other); //copy constructor ------ TODO: check if nesesary to override the copy constructor
     //virtual ~MaxRankTree();// destructor------ TODO: check if nesesary to override the destrudtor
     //virtual const MaxRankTree& operator=(const MaxRankTree& other);//copy assignment operator ------ TODO: check if nesesary to override
     virtual MaxRankTree *clone() const;
 
 private:
     ///Our Function
-    const MaxRankTree *traceTreeRecursion(
-            int currMax) const;// returns pointer to the node with most childrens that biger then currMax if exsist, and nullptr is not
+    const MaxRankTree *traceTreeRecursion(int currMax) const;// returns pointer to the node with most childrens that biger then currMax if exsist, and nullptr is not
 };
 
 //---------------------------------RootTree-------------------------------------------

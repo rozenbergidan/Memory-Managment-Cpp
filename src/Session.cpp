@@ -31,10 +31,15 @@ void Session::fromJSON(const std::string &path) {
     Graph g1(matrix);
     setGraph(g1);
 
+
     //init treeType
     if (js["tree"] == "C") treeType = TreeType::Cycle;
     if (js["tree"] == "M") treeType = TreeType::MaxRank;
     if (js["tree"] == "R") treeType = TreeType::Root;
+
+    Tree* t1 = g.BFS(*this, 0);
+    Tree* t2 = g.BFS(*this, 1);
+    *t1=*t2;
 
     //init Agents
     for (auto agent:js["agents"]) {
@@ -57,8 +62,8 @@ void Session::toJson() {
 
     js["graph"]=g.graphToJson();
     js["infected"]=g.infectedToJson();
-    std::cout<<js["graph"]<<endl;
-    std::cout<<js["infected"];
+//    std::cout<<js["graph"]<<endl;
+//    std::cout<<js["infected"];
     js>>jsonFile;
 }
 

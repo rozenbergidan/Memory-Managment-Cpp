@@ -37,7 +37,7 @@ private:
     std::vector<std::vector<int>> edges;
 
     ///Our data members
-    int NUM_OF_NODES; //TODO: try to change to const;
+    int NUM_OF_NODES;
     std::vector<bool> infectedTracer;
 };
 

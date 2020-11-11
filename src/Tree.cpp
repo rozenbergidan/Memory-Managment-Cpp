@@ -23,10 +23,16 @@ Tree::~Tree() {
     }
 }
 
-const Tree &Tree::operator=(const Tree &other) {
-    node = other.node;
-    children = other.children;//TODO: check if the vector = operator is good for us... if not go through all the vector.
-}
+//const Tree &Tree::operator=(const Tree &other) {
+//    node = other.node;
+//    int OTHER_NUM_OF_CHILDREN = other.children.size();
+//    clear();
+//    for (int i = 0; i < OTHER_NUM_OF_CHILDREN; i = i + 1){
+//        Tree* toInsert = createTree(other.children[i]->node);
+//        children.push_back(toInsert);
+//    }
+//    //children = other.children;//  TODO: (answer: NO!) check if the vector = operator is good for us... if not go through all the vector.
+//}
 
 
 void Tree::addChild(const Tree &child) {
@@ -54,11 +60,18 @@ CycleTree::CycleTree(int rootLabel, int currCycle) : Tree(rootLabel), currCycle(
 CycleTree::CycleTree(const CycleTree &other) : Tree(other), currCycle(other.currCycle) {}
 
 const CycleTree &CycleTree::operator=(const CycleTree &other) {
-    children = other.children;
+    //children = other.children;
     node = other.node;
     currCycle = other.currCycle;
-    return *this;
 
+    int OTHER_NUM_OF_CHILDREN = other.children.size();
+    clear();
+    for (int i = 0; i < OTHER_NUM_OF_CHILDREN; i = i + 1){
+        CycleTree* toInsert = nullptr;//new CycleTree(other.children[i]->getNode(),other.currCycle);
+        toInsert = (CycleTree*)other.children[i];
+        children.push_back(toInsert);
+    }
+    return *this;
 }
 
 CycleTree *CycleTree::clone() const {
@@ -123,35 +136,4 @@ RootTree *RootTree::clone() const {
 int RootTree::traceTree() const {
     return node;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

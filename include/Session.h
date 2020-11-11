@@ -51,12 +51,14 @@ private:
     TreeType treeType;
     std::vector<Agent*> agents;
 
-    ///our from/to JSon functions
-    void fromJSON(const std::string &path); //read a json file from path, and build objects accordingly
-    void toJson(); //write json file at "../output.json"
+
     /// Our Data members
     int cycleCount;
     std::queue<int> infectedQueue;
-    };
+
+    ///our from/to JSon functions
+    void fromJSON(const std::string &path); //read a json file from path, and build objects accordingly
+    void toJson(); //write json file at "../output.json"
+};
 
 #endif
