@@ -20,13 +20,15 @@ const Graph &Graph::operator=(const Graph &other) {
     edges = other.edges;
     infectedTracer = other.infectedTracer;
     NUM_OF_NODES = other.NUM_OF_NODES;
+    ///make file says there is no return
+    return *this;
 }
 
 //TODO complete BFS
 Tree *Graph::BFS(const Session &session, int root) { //if you use this func its up to you to delete the tree!!
     queue<Tree *> nodeQueue;
-    bool isVisited[edges.size()];
-    for (int i = 0; i < edges.size(); i = i + 1) {
+    bool isVisited[NUM_OF_NODES];
+    for (int i = 0; i < NUM_OF_NODES; i = i + 1) {
         isVisited[i] = false;
     }
     isVisited[root] = true;
@@ -35,8 +37,8 @@ Tree *Graph::BFS(const Session &session, int root) { //if you use this func its 
     while (nodeQueue.size() != 0) {
         Tree *tree = nodeQueue.front();
         nodeQueue.pop();
-        for (int i = 0; i < edges.size(); i = i + 1) {
-            if (edges[tree->getNode()][i] == 1 & isVisited[i] == false) {
+        for (int i = 0; i < NUM_OF_NODES; i = i + 1) {
+            if ((edges[tree->getNode()][i] == 1) & !isVisited[i] ) {
                 Tree *node = Tree::createTree(session, i);
                 tree->addChild(*node);
                 nodeQueue.push(tree->getLastChild());
@@ -54,7 +56,7 @@ Tree *Graph::BFS(const Session &session, int root) { //if you use this func its 
 
 
 void Graph::isolateNode(int node) {
-    for (int i = 0; i < edges.size(); i = i + 1) {
+    for (int i = 0; i < NUM_OF_NODES; i = i + 1) {
         edges[node][i] = 0;
         edges[i][node] = 0;
     }
@@ -71,7 +73,7 @@ bool Graph::isInfected(int nodeInd){
 
 int Graph::getNeighborToInfect(int node) {// return the nodeInd to infect, -1 if no one exist
     for(int i = 0; i < NUM_OF_NODES; i = i + 1){
-        if(edges[node][i] == 1 & !isInfected(i)) return i;
+        if((edges[node][i] == 1) & !isInfected(i)) return i;
     }
     return -1;
 }

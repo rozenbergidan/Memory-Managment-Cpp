@@ -8,17 +8,19 @@
 
 using namespace std;
 
-Tree::Tree(int rootLabel) : node(rootLabel) {}
+Tree::Tree(int rootLabel) : children({}), node(rootLabel){}
 
 ///========Rule of 3
 Tree::Tree(const Tree &other) : children(), node(other.node) {
-    for (int i = 0; i < other.children.size(); i = i + 1) {
+    int other_number_of_Children=other.children.size();
+    for (int i = 0; i < other_number_of_Children; i = i + 1) {
         children.push_back(other.children[i]);
     }
 }
 
 Tree::~Tree() {
-    for (int i = 0; i < children.size(); i = i + 1) {
+    int number_of_Children=children.size();
+    for (int i = 0; i < number_of_Children; i = i + 1) {
         if (children[i]) delete children[i];
     }
 }
@@ -26,6 +28,8 @@ Tree::~Tree() {
 const Tree &Tree::operator=(const Tree &other) {
     node = other.node;
     children = other.children;//TODO: check if the vector = operator is good for us... if not go through all the vector.
+    ///the makefile drop warning for not returning anything
+    return *this;
 }
 
 
@@ -45,6 +49,9 @@ Tree *Tree::createTree(const Session &session, int rootLabel) {
     if (session.getTreeType() == TreeType::Cycle) return new CycleTree(rootLabel, session.getCycleCount());
     if (session.getTreeType() == TreeType::MaxRank) return new MaxRankTree(rootLabel);
     if (session.getTreeType() == TreeType::Root) return new RootTree(rootLabel);
+
+    ///makefile drop warning for not returning anything
+    return *this;
 }
 
 //---------------------------------------CycleTree--------------------------------------------------------------
@@ -94,11 +101,12 @@ int MaxRankTree::traceTree() const {
 
 const MaxRankTree *MaxRankTree::traceTreeRecursion(int currMax) const {
     const MaxRankTree *output = nullptr;
-    if (children.size() > currMax) {
+    int number_of_Children=children.size();
+    if (number_of_Children > currMax) {
         currMax = children.size();
         output = this;
     }
-    for (int i = 0; i < children.size(); i = i + 1) {
+    for (int i = 0; i < number_of_Children; i = i + 1) {
         const MaxRankTree *maxInChild = ((MaxRankTree *) children[i])->traceTreeRecursion(currMax);
         if (maxInChild != nullptr) {
             output = maxInChild;
@@ -114,7 +122,7 @@ const MaxRankTree *MaxRankTree::traceTreeRecursion(int currMax) const {
 RootTree::RootTree(const RootTree &other) : Tree(other) {}
 
 ///========Rule of 3
-RootTree::RootTree(int rootLabel) : Tree(rootLabel) {}
+RootTree::RootTree(int rootLabel) : Tree(rootLabel)  {}
 
 RootTree *RootTree::clone() const {
     return new RootTree(*this);

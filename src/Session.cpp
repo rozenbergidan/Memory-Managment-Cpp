@@ -19,8 +19,9 @@ Session::Session(const std::string &path) : g({}), treeType(), agents(), cycleCo
 
 void Session::fromJSON(const std::string &path) {
     ifstream jsonFile(path);
-    json js;
-    js << jsonFile;
+    json js; //=json::parse(jsonFile); //works better with the warnings from makefile
+    //js << jsonFile;
+    jsonFile >> js;
 
 
     //init Graph for g
@@ -59,7 +60,8 @@ void Session::toJson() {
     js["infected"]=g.infectedToJson();
     std::cout<<js["graph"]<<endl;
     std::cout<<js["infected"];
-    js>>jsonFile;
+    //js>>jsonFile;
+    jsonFile<<js;
 }
 
 void Session::simulate() {
