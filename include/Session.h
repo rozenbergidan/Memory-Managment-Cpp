@@ -21,7 +21,6 @@ class Session{
 public:
 
     Session(const std::string& path);
-    Session(int i);
     
     void simulate();
     void addAgent(const Agent& agent);
