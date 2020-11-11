@@ -17,7 +17,7 @@ public:
     Tree(const Tree &other); //copy constructor
     virtual ~Tree();//destructor
     virtual const Tree &operator=(const Tree &other);//copy assignment operator
-    virtual Tree *clone() const = 0;
+    virtual Tree *clone() const = 0; //clone
 
     static Tree *createTree(const Session &session, int rootLabel);
 
@@ -43,7 +43,6 @@ public:
 
     ///Rule of 3
     CycleTree(const CycleTree &other); //copy constructor
-    //virtual ~CycleTree();// destructor ------ TODO: check if nesesary to override the destrudtor ANSWER: NOT NESSESRT!
     virtual const CycleTree &operator=(const CycleTree &other);//copy assignment operator
     virtual CycleTree *clone() const;
 

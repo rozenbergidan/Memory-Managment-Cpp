@@ -19,8 +19,9 @@ Session::Session(const std::string &path) : g({}), treeType(), agents(), cycleCo
 
 void Session::fromJSON(const std::string &path) {
     ifstream jsonFile(path);
-    json js;
-    js << jsonFile;
+    json js; //=json::parse(jsonFile); //works better with the warnings from makefile
+    //js << jsonFile;
+    jsonFile >> js;
 
 
     //init Graph for g
@@ -37,10 +38,15 @@ void Session::fromJSON(const std::string &path) {
     if (js["tree"] == "M") treeType = TreeType::MaxRank;
     if (js["tree"] == "R") treeType = TreeType::Root;
 
-    Tree* t1 = g.BFS(*this, 0);
-    Tree* t2 = g.BFS(*this, 1);
+    //TODO: this is for test! delete befor submiting!
+    CycleTree* t1 = (CycleTree*)g.BFS(*this, 0);
+    CycleTree* t2 = (CycleTree*)g.BFS(*this, 1);
+    //t1->currCycle = 2;
     *t1=*t2;
-
+    int i = 3;
+    delete t1;
+    delete t2;
+    //////////////////////////////////////////////////
     //init Agents
     for (auto agent:js["agents"]) {
         if (agent[0] == "V") {
@@ -62,9 +68,12 @@ void Session::toJson() {
 
     js["graph"]=g.graphToJson();
     js["infected"]=g.infectedToJson();
-//    std::cout<<js["graph"]<<endl;
-//    std::cout<<js["infected"];
-    js>>jsonFile;
+
+    std::cout<<js["graph"]<<endl;
+    std::cout<<js["infected"];
+    //js>>jsonFile;
+    jsonFile<<js;
+
 }
 
 void Session::simulate() {
