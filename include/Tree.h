@@ -13,10 +13,13 @@ public:
 
     void addChild(const Tree &child);
 
-    ///Rule of 3
+    //Rule of 5
     Tree(const Tree &other); //copy constructor
     virtual ~Tree();//destructor
     virtual const Tree &operator=(const Tree &other);//copy assignment operator
+
+    //Rule of 5 end
+
     virtual Tree *clone() const = 0; //clone
 
     static Tree *createTree(const Session &session, int rootLabel);
@@ -41,9 +44,12 @@ public:
 
     virtual int traceTree() const;
 
-    ///Rule of 3
+    ///Rule of 5
     CycleTree(const CycleTree &other); //copy constructor
     virtual const CycleTree &operator=(const CycleTree &other);//copy assignment operator
+    //delete - inherited from tree.
+
+
     virtual CycleTree *clone() const;
 
 private:
@@ -58,9 +64,13 @@ public:
     virtual int traceTree() const;
 
     //Rule of 5
-    MaxRankTree(const MaxRankTree &other); //copy constructor ------ TODO: check if nesesary to override the copy constructor
-    //virtual ~MaxRankTree();// destructor------ TODO: check if nesesary to override the destrudtor
-    //virtual const MaxRankTree& operator=(const MaxRankTree& other);//copy assignment operator ------ TODO: check if nesesary to override
+    MaxRankTree(const MaxRankTree &other); //copy constructor
+    // destructor - inherited from tree.
+    //copy assignment operator - inherited from tree.
+
+    //Rule of 5 end.
+
+
     virtual MaxRankTree *clone() const;
 
 private:

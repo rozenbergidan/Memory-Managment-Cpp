@@ -13,8 +13,21 @@ Session::Session(const std::string &path) : g({}), treeType(), agents(), cycleCo
     fromJSON(path);
 
 }
-///========Rule of 5
+//Rule of 5
+Session::~Session() {
+    //clearAgents();
+    for (Agent* agent: agents){
+        delete agent;
+    }
+}
 
+Session:: Session(const Session &other):g(other.g), treeType(other.treeType), agents({}), cycleCount(other.cycleCount), infectedQueue(other.infectedQueue){//copy constructor
+    int newAgentsSize = other.agents.size();
+    for (int i = 0; i < newAgentsSize; i = i + 1){
+        addAgent(*other.agents[i]);
+    }
+}
+//Rule of 5 end
 
 
 void Session::fromJSON(const std::string &path) {
@@ -95,12 +108,6 @@ void Session::addAgent(const Agent &agent) {
 
 void Session::setGraph(const Graph &graph) {
     g = graph;
-}
-
-Session::~Session() {
-    for (Agent* agent: agents){
-        delete agent;
-    }
 }
 
 Tree *Session::BFS(int node) {

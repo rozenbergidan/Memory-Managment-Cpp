@@ -26,8 +26,14 @@ public:
     void addAgent(const Agent& agent);
     void setGraph(const Graph& graph);
 
+    //Rule of 5
     ~Session();
-    
+    Session(const Session &other); //copy constructor
+
+
+    //Rule of 5 end
+
+
     void enqueueInfected(int);
     int dequeueInfected(); //return -1 if empty
     TreeType getTreeType() const;
@@ -35,9 +41,9 @@ public:
     ///Our Functions
     Tree* BFS(int node); //return the BFS tree from g, reducing coupling
 
-    void isolateNode(int node); //isolate the node from its neighbors, calls to graph::isolateNodee
+    void isolateNode(int node); //isolate the node from its neighbors, calls to graph::isolateNode
 
-    int getNeighborToInfect(int node);// return the node neighbor to getNeighborToInfect, return -1 is all neighbors are infected
+    int getNeighborToInfect(int node) ;// return the node neighbor to getNeighborToInfect, return -1 is all neighbors are infected
 
     bool isAllActiveOrIsolated(); //return True if all active nodes are isolated or if all nodes are Active
 
@@ -59,6 +65,8 @@ private:
     ///our from/to JSon functions
     void fromJSON(const std::string &path); //read a json file from path, and build objects accordingly
     void toJson(); //write json file at "../output.json"
+
+    //void clearAgents();
 };
 
 #endif
