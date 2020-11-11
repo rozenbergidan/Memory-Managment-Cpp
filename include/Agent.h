@@ -9,7 +9,7 @@ public:
     Agent();
 
     ///Rule of 3
-    virtual ~Agent()=0; //destructor
+    virtual ~Agent(); //destructor
     virtual Agent *clone() const = 0;
     //Agent(const Agent &other)=0; //copy constructor
     //virtual const Agent& operator=(const Agent& other)=0; //copy assignment operator
@@ -23,7 +23,7 @@ public:
     ContactTracer();
 
     ///Rule of 5
-    //virtual ~ContactTracer(); //destructor
+    //~ContactTracer(); //destructor
     virtual ContactTracer *clone() const;
     //ContactTracer(const ContactTracer &other); //copy constructor
     //virtual const ContactTracer &operator=(const ContactTracer &other); //copy assignment operator
@@ -38,7 +38,7 @@ public:
     Virus(int nodeInd);
 
     ///Rule of 5
-    //Virtual ~Virus(); //destructor
+    ~Virus(); //destructor
     Virus(const Virus &other); //copy constructor
     virtual Virus *clone() const;
     //virtual const Virus& operator=(const Virus& other); //copy assignment operator

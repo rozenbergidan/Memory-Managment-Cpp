@@ -10,15 +10,18 @@ using namespace std;
 Agent::Agent(){}
 
 ///========Rule of 3
-
+Agent::~Agent() noexcept = default;
 //---------------------------------------ContactTracer---------------------------------------------------------------
 ContactTracer::ContactTracer() : Agent() {};
 
 ///========Rule of 5
+
+
 ContactTracer *ContactTracer::clone() const {
     ContactTracer *output = new ContactTracer();
     return output;
 }
+
 void ContactTracer::act(Session &session) {
     int node = session.dequeueInfected();
     if (node != -1) {
@@ -27,7 +30,6 @@ void ContactTracer::act(Session &session) {
         session.isolateNode(nodeToDelete);
         delete tree;
     }
-
 }
 
 //---------------------------------------Virus---------------------------------------------------------------
@@ -35,6 +37,9 @@ Virus::Virus(int nodeInd) : Agent(), nodeInd(nodeInd), isActive(false) {}
 
 ///========Rule of 5
 Virus::Virus(const Virus &other) :Agent(), nodeInd(other.nodeInd),isActive(other.isActive){
+
+}
+Virus::~Virus() {
 
 }
 //const Virus & Virus::operator=(const Virus &other) {
