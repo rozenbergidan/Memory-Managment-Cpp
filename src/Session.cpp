@@ -29,15 +29,18 @@ Session:: Session(const Session &other):g(other.g), treeType(other.treeType), ag
     }
 }
 const Session &Session::operator=(const Session &other){
-    setGraph(other.g);
-    treeType=other.treeType;
-    agents.clear();
-    int newAgentsSize = other.agents.size();
-    for(int i=0; i<newAgentsSize;i++) {
-        addAgent(*other.agents[i]);
+    if(this!=&other) {
+        setGraph(other.g);
+        treeType = other.treeType;
+        agents.clear();
+        int newAgentsSize = other.agents.size();
+        for (int i = 0; i < newAgentsSize; i++) {
+            addAgent(*other.agents[i]);
+        }
     }
     return *this;
 }
+
 //Rule of 5 end
 
 void Session::fromJSON(const std::string &path) {
