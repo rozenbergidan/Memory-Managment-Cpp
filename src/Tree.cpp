@@ -1,19 +1,27 @@
 //
 // Created by spl211 on 02/11/2020.
 //
-
+#include <iostream> //TODO: delete this include
 #include "../include/Tree.h"
 #include "../include/Session.h"
 
 using namespace std;
 
-Tree::Tree(int rootLabel) : children({}), node(rootLabel){}
+Tree::Tree(int rootLabel) : children(), node(rootLabel){}
 
 ///========Rule of 3
 Tree::Tree(const Tree &other) : children(), node(other.node) {
     int other_number_of_Children=other.children.size();
     for (int i = 0; i < other_number_of_Children; i = i + 1) {
         children.push_back(other.children[i]->clone());
+    }
+}
+
+Tree::Tree(Tree &&other):children(), node(other.node){
+    int other_number_of_Children = other.children.size();
+    for (int i = 0; i < other_number_of_Children; i = i + 1) {
+        children.push_back(other.children[i]);
+        other.children[i] = nullptr;
     }
 }
 
@@ -28,12 +36,25 @@ Tree::~Tree() {
 const Tree &Tree::operator=(const Tree &other) {
     if (this != &other) {
         node = other.node;
-        int OTHER_NUM_OF_CHILDREN = other.children.size();
+        int other_number_of_Children = other.children.size();
         clear();//delete the children.
-        for (int i = 0; i < OTHER_NUM_OF_CHILDREN; i = i + 1) {
+        for (int i = 0; i < other_number_of_Children; i = i + 1) {
             addChild(*other.children[i]);
         }
     }
+    std:: cout << "tree copy =" << endl;///////////////////////////////////////////////////////////////
+    return *this;
+}
+
+const Tree& Tree::operator=(Tree &&other) {
+        node = other.node;
+        int other_number_of_Children = other.children.size();
+        clear();//delete the children.
+        for (int i = 0; i < other_number_of_Children; i = i + 1) {
+            children.push_back(other.children[i]);
+            other.children[i]=nullptr;
+        }
+    std:: cout << "tree move =" << endl;///////////////////////////////////////////////
     return *this;
 }
 
@@ -75,6 +96,19 @@ const CycleTree &CycleTree::operator=(const CycleTree &other) {
     return *this;
 }
 
+const CycleTree &CycleTree::operator=(CycleTree &&other) {
+    currCycle = other.currCycle;
+    Tree::operator=(other);
+//    node = other.node;
+//    int other_number_of_Children = other.children.size();
+//    clear();//delete the children.
+//    for (int i = 0; i < other_number_of_Children; i = i + 1) {
+//        children.push_back(other.children[i]);
+//        other.children[i]=nullptr;
+//    }
+    return *this;
+}
+
 CycleTree *CycleTree::clone() const {
     return new CycleTree(*this);
 }
@@ -87,12 +121,10 @@ int CycleTree::traceTree() const {
     return outputTree->node;
 }
 
-
-
 //---------------------------------------MaxRankTree------------------------------------------------------------
 MaxRankTree::MaxRankTree(const MaxRankTree &other) : Tree(other) {}
 
-///========Rule of 5
+//========Rule of 5
 MaxRankTree::MaxRankTree(int rootLabel) : Tree(rootLabel) {}
 
 MaxRankTree *MaxRankTree::clone() const {

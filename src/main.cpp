@@ -8,7 +8,11 @@ int main(int argc, char **argv) {
         cout << "usage cTrace <config_path>" << endl;
         return 0;
     }
+
     Session sess(argv[1]);
     sess.simulate();
+//    CycleTree t = new Tree(Tree:: createTree(sess, 0));
+//    cout <<&t;
+//    cout <<&t;
     return 0;
 }
