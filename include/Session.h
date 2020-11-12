@@ -29,9 +29,9 @@ public:
     //Rule of 5
     ~Session(); //destructor
     Session(const Session &other); //copy constructor
-    Session(const Session &&other); //move constructor
+    Session(Session &&other); //move constructor
     const Session& operator=(const Session& other); //copy assignment operator
-    const Session& operator=(const Session&& other); //move assignment operator
+    const Session& operator=(Session&& other); //move assignment operator TODO: check other if goes to move or copy
 
     void enqueueInfected(int);
     int dequeueInfected(); //return -1 if empty

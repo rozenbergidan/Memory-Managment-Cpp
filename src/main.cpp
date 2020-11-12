@@ -8,7 +8,14 @@ int main(int argc, char **argv) {
         cout << "usage cTrace <config_path>" << endl;
         return 0;
     }
+
     Session sess(argv[1]);
     sess.simulate();
+//    Session sess1(argv[1]);
+//    sess1=std::move(sess);
+//
+//    int i=3;
+
+
     return 0;
 }

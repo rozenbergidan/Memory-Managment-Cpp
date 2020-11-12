@@ -26,6 +26,15 @@ const Graph &Graph::operator=(const Graph &other) {
 
 Graph::Graph(const Graph &other) :edges(other.edges), NUM_OF_NODES(other.NUM_OF_NODES),infectedTracer(other.infectedTracer){}
 
+Graph::Graph(Graph &&other) : edges(std::move(other.edges)/*TODO*/), NUM_OF_NODES(other.NUM_OF_NODES), infectedTracer(other.infectedTracer){}
+
+const Graph &Graph::operator=(Graph &&other) {
+    edges = std::move(other.edges);/*TODO*/
+    infectedTracer = other.infectedTracer;
+    NUM_OF_NODES = other.NUM_OF_NODES;
+    ///make file says there is no return
+    return *this;
+}
 //TODO complete BFS
 Tree *Graph::BFS(const Session &session, int root) { //if you use this func its up to you to delete the tree!!
     queue<Tree *> nodeQueue;
