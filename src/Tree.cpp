@@ -2,7 +2,6 @@
 // Created by spl211 on 02/11/2020.
 //
 
-
 #include "../include/Tree.h"
 #include "../include/Session.h"
 
@@ -27,12 +26,13 @@ Tree::~Tree() {
 
 
 const Tree &Tree::operator=(const Tree &other) {
-    node = other.node;
-
-    int OTHER_NUM_OF_CHILDREN = other.children.size();
-    clear();//delete the children.
-    for (int i = 0; i < OTHER_NUM_OF_CHILDREN; i = i + 1){
-        addChild(*other.children[i]);
+    if (this != &other) {
+        node = other.node;
+        int OTHER_NUM_OF_CHILDREN = other.children.size();
+        clear();//delete the children.
+        for (int i = 0; i < OTHER_NUM_OF_CHILDREN; i = i + 1) {
+            addChild(*other.children[i]);
+        }
     }
     return *this;
 }
@@ -41,7 +41,7 @@ const Tree &Tree::operator=(const Tree &other) {
 void Tree:: clear(){
     int num_of_child = children.size();
     for(int i = 0; i < num_of_child; i = i + 1){
-        delete children[i]; //TODO: check if good
+        delete children[i];
     }
     children.clear();
 }
@@ -60,10 +60,7 @@ int Tree::getNode() const {
 Tree *Tree::createTree(const Session &session, int rootLabel) {
     if (session.getTreeType() == TreeType::Cycle) return new CycleTree(rootLabel, session.getCycleCount());
     else if (session.getTreeType() == TreeType::MaxRank) return new MaxRankTree(rootLabel);
-    else  return new RootTree(rootLabel); //(session.getTreeType() == TreeType::Root)
-
-    ///makefile drop warning for not returning anything
-    //return *this;
+    else  return new RootTree(rootLabel);
 }
 
 //---------------------------------------CycleTree--------------------------------------------------------------
