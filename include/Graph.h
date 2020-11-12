@@ -10,11 +10,18 @@ public:
 
     Graph(std::vector<std::vector<int>> matrix);
 
+
+
     void infectNode(int nodeInd);
 
     bool isInfected(int nodeInd);
-    //Rule of 5
+
+    ///Rule of 5
+    //virtual ~Graph(); //destructor
+    Graph(const Graph &other); //copy constructor
+    Graph(const Graph &&other); //move constructor
     const Graph &operator=(const Graph &other); //copy assignment operator
+    const Graph &operator=(const Graph &&other); //move assignment operator
 
 
 

@@ -14,7 +14,7 @@ Tree::Tree(int rootLabel) : children({}), node(rootLabel){}
 Tree::Tree(const Tree &other) : children(), node(other.node) {
     int other_number_of_Children=other.children.size();
     for (int i = 0; i < other_number_of_Children; i = i + 1) {
-        children.push_back(other.children[i]->clone());//they share the data NOOOOO GOOD!
+        children.push_back(other.children[i]->clone());
     }
 }
 

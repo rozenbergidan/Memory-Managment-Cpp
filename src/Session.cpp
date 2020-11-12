@@ -13,14 +13,36 @@ Session::Session(const std::string &path) : g({}), treeType(), agents(), cycleCo
     fromJSON(path);
 
 }
-///========Rule of 5
 
+//Rule of 5
+Session::~Session() {
+    //clearAgents();
+    for (Agent* agent: agents){
+        delete agent;
+    }
+}
 
+Session:: Session(const Session &other):g(other.g), treeType(other.treeType), agents({}), cycleCount(other.cycleCount), infectedQueue(other.infectedQueue){//copy constructor
+    int newAgentsSize = other.agents.size();
+    for (int i = 0; i < newAgentsSize; i = i + 1){
+        addAgent(*other.agents[i]);
+    }
+}
+const Session &Session::operator=(const Session &other){
+    setGraph(other.g);
+    treeType=other.treeType;
+    agents.clear();
+    int newAgentsSize = other.agents.size();
+    for(int i=0; i<newAgentsSize;i++) {
+        addAgent(*other.agents[i]);
+    }
+    return *this;
+}
+//Rule of 5 end
 
 void Session::fromJSON(const std::string &path) {
     ifstream jsonFile(path);
-    json js; //=json::parse(jsonFile); //works better with the warnings from makefile
-    //js << jsonFile;
+    json js;
     jsonFile >> js;
 
 
@@ -38,15 +60,6 @@ void Session::fromJSON(const std::string &path) {
     if (js["tree"] == "M") treeType = TreeType::MaxRank;
     if (js["tree"] == "R") treeType = TreeType::Root;
 
-    //TODO: this is for test! delete befor submiting!
-    CycleTree* t1 = (CycleTree*)g.BFS(*this, 0);
-    CycleTree* t2 = (CycleTree*)g.BFS(*this, 1);
-    //t1->currCycle = 2;
-    *t1=*t2;
-    //int i = 3;
-    delete t1;
-    delete t2;
-    //////////////////////////////////////////////////
     //init Agents
     for (auto agent:js["agents"]) {
         if (agent[0] == "V") {
@@ -95,12 +108,6 @@ void Session::addAgent(const Agent &agent) {
 
 void Session::setGraph(const Graph &graph) {
     g = graph;
-}
-
-Session::~Session() {
-    for (Agent* agent: agents){
-        delete agent;
-    }
 }
 
 Tree *Session::BFS(int node) {
