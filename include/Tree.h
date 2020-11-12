@@ -14,11 +14,12 @@ public:
     void addChild(const Tree &child);
 
     //Rule of 5
-    Tree(const Tree &other); //copy constructor
     virtual ~Tree();//destructor
+    Tree(const Tree &other); //copy constructor
+    //Tree(const Tree &&other); //move constructor
     virtual const Tree &operator=(const Tree &other);//copy assignment operator
+    //virtual const Tree &operator=(const Tree &&other);//move assignment operator
 
-    //Rule of 5 end
 
     virtual Tree *clone() const = 0; //clone
 
@@ -46,7 +47,9 @@ public:
 
     ///Rule of 5
     CycleTree(const CycleTree &other); //copy constructor
+    //CycleTree(const CycleTree &&other); //move constructor
     virtual const CycleTree &operator=(const CycleTree &other);//copy assignment operator
+    //virtual const CycleTree &operator=(const CycleTree &&other);//move assignment operator
     //delete - inherited from tree.
 
 
@@ -67,7 +70,7 @@ public:
     MaxRankTree(const MaxRankTree &other); //copy constructor
     // destructor - inherited from tree.
     //copy assignment operator - inherited from tree.
-
+    //move assignment operator - inherited from tree.
     //Rule of 5 end.
 
 

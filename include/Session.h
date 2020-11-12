@@ -27,17 +27,15 @@ public:
     void setGraph(const Graph& graph);
 
     //Rule of 5
-    ~Session();
+    ~Session(); //destructor
     Session(const Session &other); //copy constructor
-
-
-    //Rule of 5 end
-
+    Session(const Session &&other); //move constructor
+    const Session& operator=(const Session& other); //copy assignment operator
+    const Session& operator=(const Session&& other); //move assignment operator
 
     void enqueueInfected(int);
     int dequeueInfected(); //return -1 if empty
     TreeType getTreeType() const;
-
     ///Our Functions
     Tree* BFS(int node); //return the BFS tree from g, reducing coupling
 
