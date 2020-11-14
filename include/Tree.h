@@ -31,7 +31,7 @@ public:
     Tree* getLastChild(); //TODO: check in office hours if i should return const reffernce.
     int getNode() const;
     void clear();// clear the children vector recurrcively;
-
+    int getNumOfChild() const;
 protected:
     std::vector<Tree *> children;
     int node;
@@ -79,6 +79,9 @@ public:
 private:
     ///Our Function
     const MaxRankTree *traceTreeRecursion(int currMax) const;// returns pointer to the node with most childrens that biger then currMax if exsist, and nullptr is not
+
+    MaxRankTree *traceTreeRecursion(MaxRankTree* currMaxPtr, int currMax, int currMaxDepth, int currDepth);// returns pointer to the node with most childrens that biger then currMax if exsist, and nullptr is not
+
 };
 
 //---------------------------------RootTree-------------------------------------------
