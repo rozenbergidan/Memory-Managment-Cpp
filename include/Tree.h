@@ -16,8 +16,8 @@ public:
     virtual ~Tree();//destructor
     Tree(const Tree &other); //copy constructor
     Tree(Tree &&other); //move constructor
-    const Tree &operator=(const Tree &other);//copy assignment operator
-    const Tree &operator=(Tree &&other);//move assignment operator
+    Tree &operator=(const Tree &other);//copy assignment operator
+    Tree &operator=(Tree &&other);//move assignment operator
 
 
     virtual Tree *clone() const = 0; //clone
@@ -45,8 +45,8 @@ public:
     // destructor - inherited from tree
     CycleTree(const CycleTree &other); //copy constructor
     CycleTree(CycleTree &&other); //move constructor
-    const CycleTree &operator=(const CycleTree &other);//copy assignment operator
-    const CycleTree &operator=(CycleTree &&other);//move assignment operator
+    CycleTree &operator=(const CycleTree &other);//copy assignment operator
+    CycleTree &operator=(CycleTree &&other);//move assignment operator
     //Rule of 5 end.
 
     virtual CycleTree *clone() const;
@@ -64,9 +64,9 @@ public:
     ///Rule of 5
     // destructor - inherited from tree
     MaxRankTree(const MaxRankTree &other); //copy constructor
-    MaxRankTree(MaxRankTree &&other);
-    const MaxRankTree &operator=(const MaxRankTree &other);//copy assignment operator - inherited from tree.
-    const MaxRankTree &operator=(MaxRankTree &&other);//move assignment operator - inherited from tree.
+    MaxRankTree(MaxRankTree &&other); //move constructor
+    MaxRankTree &operator=(const MaxRankTree &other);//copy assignment operator
+    MaxRankTree &operator=(MaxRankTree &&other);//move assignment operator
     //Rule of 5 end.
 
     virtual MaxRankTree *clone() const;
@@ -81,9 +81,9 @@ public:
     ///Rule of 5
     //virtual ~RootTree();// destructor - inherent from Tree
     RootTree(const RootTree &other); //copy constructor
-    RootTree(RootTree &&other);
-    const RootTree& operator=(const RootTree& other);//copy assignment operator  inherent from Tree
-    const RootTree& operator=(RootTree&& other);
+    RootTree(RootTree &&other);//move constructor
+    RootTree& operator=(const RootTree& other);//copy assignment operator
+    RootTree& operator=(RootTree&& other);//move assignment operator
     //Rule of 5 end.
 
     virtual RootTree *clone() const;

@@ -30,13 +30,13 @@ public:
     ~Session(); //destructor
     Session(const Session &other); //copy constructor
     Session(Session &&other); //move constructor
-    const Session& operator=(const Session& other); //copy assignment operator
-    const Session& operator=(Session&& other); //move assignment operator
+    Session& operator=(const Session& other); //copy assignment operator
+    Session& operator=(Session&& other); //move assignment operator
 
     void enqueueInfected(int);
     int dequeueInfected(); //return -1 if empty
     TreeType getTreeType() const;
-    ///Our Functions
+
     Tree* BFS(int node); //return the BFS tree from g, reducing coupling
 
     void isolateNode(int node); //isolate the node from its neighbors, calls to graph::isolateNode

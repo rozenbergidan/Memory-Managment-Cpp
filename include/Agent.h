@@ -22,7 +22,7 @@ class ContactTracer : public Agent {
 public:
     ContactTracer();
 
-    ///Rule of 5
+
     //~ContactTracer(); //destructor --INHERITED
     virtual ContactTracer *clone() const;
     //ContactTracer(const ContactTracer &other); //copy constructor -DEFAULT
@@ -37,7 +37,7 @@ class Virus : public Agent {
 public:
     Virus(int nodeInd);
 
-    ///Rule of 5
+
 //    ~Virus(); //destructor --INHERITED
 //    Virus(const Virus &other); //copy constructor -DEFAULT
     virtual Virus *clone() const;

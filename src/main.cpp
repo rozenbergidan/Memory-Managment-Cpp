@@ -12,10 +12,12 @@ int main(int argc, char **argv) {
     Session sess(argv[1]);
     sess.simulate();
 
-//    MaxRankTree* t1=((MaxRankTree*)(sess.BFS(1)));
-//    MaxRankTree* t2=((MaxRankTree*)(sess.BFS(2)));
-//    MaxRankTree* t3=((MaxRankTree*)(sess.BFS(3)));
-//    MaxRankTree* t4=((MaxRankTree*)(sess.BFS(4)));
+    MaxRankTree* t1=((MaxRankTree*)(sess.BFS(1)));
+    MaxRankTree* t2=((MaxRankTree*)(sess.BFS(2)));
+    MaxRankTree* t3=((MaxRankTree*)(sess.BFS(3)));
+t1=t2=t3;
+t1->addChild(t2);
+    //    MaxRankTree* t4=((MaxRankTree*)(sess.BFS(4)));
 //
 //    *t2=std::move(*t1);
 //    *t4=*t3;

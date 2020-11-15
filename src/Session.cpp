@@ -27,7 +27,7 @@ Session:: Session(const Session &other):g(other.g), treeType(other.treeType), ag
         addAgent(*other.agents[i]);
     }
 }
-const Session &Session::operator=(const Session &other){
+Session &Session::operator=(const Session &other){
     if(this != &other) {
         setGraph(other.g);
         treeType = other.treeType;
@@ -52,7 +52,7 @@ Session:: Session(Session &&other):g(std::move(other.g)), treeType(other.treeTyp
     }
 }
 
-const Session &Session::operator=(Session &&other){
+Session &Session::operator=(Session &&other){
         g=std::move(other.g);
         treeType = other.treeType;
         for(Agent* agent: agents){
@@ -109,8 +109,6 @@ void Session::toJson() {
     js["graph"]=g.graphToJson();
     js["infected"]=g.infectedToJson();
 
-    //std::cout<<js["graph"]<<endl;
-    //std::cout<<js["infected"];
     jsonFile<<js;
 
 }
@@ -124,7 +122,6 @@ void Session::simulate() {
         cycleCount = cycleCount + 1;
     }
     toJson();
-    //TODO clear all DATA
 }
 
 void Session::addAgent(const Agent &agent) {

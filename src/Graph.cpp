@@ -15,25 +15,6 @@ Graph::Graph(vector <vector<int>> matrix) :edges(matrix), NUM_OF_NODES(edges.siz
     }
 }
 
-///========Rule of 5
-//const Graph &Graph::operator=(const Graph &other) {
-//    edges = other.edges;
-//    infectedTracer = other.infectedTracer;
-//    NUM_OF_NODES = other.NUM_OF_NODES;
-//    return *this;
-//}
-//
-//Graph::Graph(const Graph &other) :edges(other.edges), NUM_OF_NODES(other.NUM_OF_NODES),infectedTracer(other.infectedTracer){}
-//
-//Graph::Graph(Graph &&other) : edges(std::move(other.edges)/*TODO*/), NUM_OF_NODES(other.NUM_OF_NODES), infectedTracer((std::move(other.infectedTracer))){}
-//
-//const Graph &Graph::operator=(Graph &&other) {
-//    edges = std::move(other.edges);/*TODO*/
-//    infectedTracer = other.infectedTracer;
-//    NUM_OF_NODES = other.NUM_OF_NODES;
-//    return *this;
-//}
-
 Tree *Graph::BFS(const Session &session, int root) { //if you use this func its up to you to delete the tree!!
     queue<Tree *> nodeQueue;
     bool isVisited[NUM_OF_NODES];
