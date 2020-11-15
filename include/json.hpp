@@ -6423,7 +6423,7 @@ class binary_reader
     {
         if (get_char)
         {
-            get();  // TODO(niels): may we ignore N here?
+            get();  // TODO(niels): may we ignore N here? idan and tsuri: NO!
         }
 
         if (JSON_HEDLEY_UNLIKELY(not unexpect_eof(input_format_t::ubjson, "value")))

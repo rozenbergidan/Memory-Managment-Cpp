@@ -10,7 +10,7 @@ using namespace std;
 Agent::Agent(){}
 
 ///========Rule of 3
-Agent::~Agent() noexcept = default;
+Agent::~Agent(){};
 //---------------------------------------ContactTracer---------------------------------------------------------------
 ContactTracer::ContactTracer() : Agent() {};
 
@@ -36,12 +36,12 @@ void ContactTracer::act(Session &session) {
 Virus::Virus(int nodeInd) : Agent(), nodeInd(nodeInd), isActive(false) {}
 
 ///========Rule of 5
-Virus::Virus(const Virus &other) :Agent(), nodeInd(other.nodeInd),isActive(other.isActive){
-
-}
-Virus::~Virus() {
-
-}
+//Virus::Virus(const Virus &other) :Agent(), nodeInd(other.nodeInd),isActive(other.isActive){
+//
+//}
+//Virus::~Virus() {
+//
+//}
 //const Virus & Virus::operator=(const Virus &other) {
 //    nodeInd=other.nodeInd;
 //    isActive=other.isActive;
@@ -65,7 +65,8 @@ void Virus::act(Session &session) {
         session.infectNode(nodeToInfect);
         delete newVirus;
     }
-
 }
+
+bool Virus::getActive() const {return isActive;}
 
 

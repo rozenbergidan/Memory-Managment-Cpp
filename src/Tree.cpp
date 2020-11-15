@@ -3,27 +3,12 @@
 //
 #include "../include/Tree.h"
 #include "../include/Session.h"
-
+#include <iostream> ////DELETE
 using namespace std;
 
 Tree::Tree(int rootLabel) : children(), node(rootLabel){}
 
-///========Rule of 3
-Tree::Tree(const Tree &other) : children(), node(other.node) {
-    int other_number_of_Children=other.children.size();
-    for (int i = 0; i < other_number_of_Children; i = i + 1) {
-        children.push_back(other.children[i]->clone());
-    }
-}
-
-Tree::Tree(Tree &&other):children(), node(other.node){
-    int other_number_of_Children = other.children.size();
-    for (int i = 0; i < other_number_of_Children; i = i + 1) {
-        children.push_back(other.children[i]);
-        other.children[i] = nullptr;
-    }
-}
-
+///========Rule of 5
 Tree::~Tree() {
     int number_of_Children=children.size();
     for (int i = 0; i < number_of_Children; i = i + 1) {
@@ -31,6 +16,20 @@ Tree::~Tree() {
     }
 }
 
+Tree::Tree(const Tree &other) : children(), node(other.node) {
+    int other_number_of_Children=other.children.size();
+    for (int i = 0; i < other_number_of_Children; i = i + 1) {
+        children.push_back(other.children[i]->clone()); //TODO: check if the vector push back works accordingly
+    }
+}
+
+Tree::Tree(Tree &&other):children(), node(other.node){/*std::move(other.children)TODO*/
+    int other_number_of_Children = other.children.size();
+    for (int i = 0; i < other_number_of_Children; i = i + 1) {
+        children.push_back(other.children[i]);
+        other.children[i] = nullptr;
+    }
+}
 
 const Tree &Tree::operator=(const Tree &other) {
     if (this != &other) {
@@ -45,16 +44,17 @@ const Tree &Tree::operator=(const Tree &other) {
 }
 
 const Tree& Tree::operator=(Tree &&other) {
+    if(this!=&other) {
         node = other.node;
         int other_number_of_Children = other.children.size();
         clear();//delete the children.
         for (int i = 0; i < other_number_of_Children; i = i + 1) {
             children.push_back(other.children[i]);
-            other.children[i]=nullptr;
+            other.children[i] = nullptr;
         }
+    }
     return *this;
 }
-
 
 void Tree:: clear(){
     int num_of_child = children.size();
@@ -87,7 +87,7 @@ CycleTree::CycleTree(int rootLabel, int currCycle) : Tree(rootLabel), currCycle(
 
 ///========Rule of 5
 CycleTree::CycleTree(const CycleTree &other) : Tree(other), currCycle(other.currCycle) {}
-
+CycleTree::CycleTree(CycleTree &&other) : Tree(std::move(other)), currCycle(other.currCycle) {}
 const CycleTree &CycleTree::operator=(const CycleTree &other) {
     currCycle = other.currCycle;
     Tree::operator=(other);
@@ -96,14 +96,7 @@ const CycleTree &CycleTree::operator=(const CycleTree &other) {
 
 const CycleTree &CycleTree::operator=(CycleTree &&other) {
     currCycle = other.currCycle;
-    Tree::operator=(other);
-//    node = other.node;
-//    int other_number_of_Children = other.children.size();
-//    clear();//delete the children.
-//    for (int i = 0; i < other_number_of_Children; i = i + 1) {
-//        children.push_back(other.children[i]);
-//        other.children[i]=nullptr;
-//    }
+    Tree::operator=(std::move(other));
     return *this;
 }
 
@@ -121,7 +114,15 @@ int CycleTree::traceTree() const {
 
 //---------------------------------------MaxRankTree------------------------------------------------------------
 MaxRankTree::MaxRankTree(const MaxRankTree &other) : Tree(other) {}
-
+MaxRankTree::MaxRankTree(MaxRankTree &&other) :Tree(std::move(other)){}
+const MaxRankTree & MaxRankTree::operator=(const MaxRankTree &other) {
+    Tree::operator=(other);
+    return *this;
+}
+const MaxRankTree & MaxRankTree::operator=(MaxRankTree &&other) {
+    Tree::operator=(std::move(other));
+    return *this;
+}
 //========Rule of 5
 MaxRankTree::MaxRankTree(int rootLabel) : Tree(rootLabel) {}
 
@@ -173,7 +174,15 @@ int MaxRankTree::traceTree() const {
 
 //---------------------------------------RootTree---------------------------------------------------------------
 RootTree::RootTree(const RootTree &other) : Tree(other) {}
-
+RootTree::RootTree(RootTree &&other) : Tree(std::move(other)) {}
+const RootTree & RootTree::operator=(const RootTree &other) {
+    Tree::operator=(other);
+    return *this;
+}
+const RootTree & RootTree::operator=(RootTree &&other) {
+    Tree::operator=(std::move(other));
+    return *this;
+}
 ///========Rule of 3
 RootTree::RootTree(int rootLabel) : Tree(rootLabel)  {}
 

@@ -11,8 +11,19 @@ int main(int argc, char **argv) {
 
     Session sess(argv[1]);
     sess.simulate();
-//    CycleTree t = new Tree(Tree:: createTree(sess, 0));
-//    cout <<&t;
-//    cout <<&t;
-    return 0;
+
+//    MaxRankTree* t1=((MaxRankTree*)(sess.BFS(1)));
+//    MaxRankTree* t2=((MaxRankTree*)(sess.BFS(2)));
+//    MaxRankTree* t3=((MaxRankTree*)(sess.BFS(3)));
+//    MaxRankTree* t4=((MaxRankTree*)(sess.BFS(4)));
+//
+//    *t2=std::move(*t1);
+//    *t4=*t3;
+//    int i=2;
+//
+//    delete t1;
+//    delete t2;
+//    delete t3;
+//    delete t4;
+//    return 0;
 }

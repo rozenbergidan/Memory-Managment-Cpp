@@ -21,7 +21,7 @@ Session::~Session() {
     }
 }
 
-Session:: Session(const Session &other):g(other.g), treeType(other.treeType), agents({}), cycleCount(other.cycleCount), infectedQueue(other.infectedQueue){//copy constructor
+Session:: Session(const Session &other):g(other.g), treeType(other.treeType), agents(), cycleCount(other.cycleCount), infectedQueue(other.infectedQueue){//copy constructor
     int newAgentsSize = other.agents.size();
     for (int i = 0; i < newAgentsSize; i = i + 1){
         addAgent(*other.agents[i]);
@@ -31,6 +31,9 @@ const Session &Session::operator=(const Session &other){
     if(this != &other) {
         setGraph(other.g);
         treeType = other.treeType;
+        for(Agent* agent: agents){
+             delete agent;
+        }
         agents.clear();
         int newAgentsSize = other.agents.size();
         for (int i = 0; i < newAgentsSize; i++) {
@@ -40,7 +43,8 @@ const Session &Session::operator=(const Session &other){
     return *this;
 }
 
-Session:: Session(Session &&other):g(other.g), treeType(other.treeType), agents(), cycleCount(other.cycleCount), infectedQueue(other.infectedQueue){//move constructor
+
+Session:: Session(Session &&other):g(std::move(other.g)), treeType(other.treeType), agents(), cycleCount(other.cycleCount), infectedQueue(other.infectedQueue){//move constructor
     int newAgentsSize = other.agents.size();
     for (int i = 0; i < newAgentsSize; i = i + 1){
         agents.push_back(other.agents[i]);
@@ -48,7 +52,19 @@ Session:: Session(Session &&other):g(other.g), treeType(other.treeType), agents(
     }
 }
 
-
+const Session &Session::operator=(Session &&other){
+        g=std::move(other.g);
+        treeType = other.treeType;
+        for(Agent* agent: agents){
+            delete agent;
+        }
+        agents.clear();
+        int newAgentsSize = other.agents.size();
+        for (int i = 0; i < newAgentsSize; i++) {
+            addAgent(*other.agents[i]);
+        }
+    return *this;
+}
 //Rule of 5 end
 
 void Session::fromJSON(const std::string &path) {
@@ -87,15 +103,14 @@ void Session::fromJSON(const std::string &path) {
 }
 
 void Session::toJson() {
-    ofstream jsonFile("../output.json");
+    ofstream jsonFile("./output.json");
     json js;
 
     js["graph"]=g.graphToJson();
     js["infected"]=g.infectedToJson();
 
-    std::cout<<js["graph"]<<endl;
-    std::cout<<js["infected"];
-    //js>>jsonFile;
+    //std::cout<<js["graph"]<<endl;
+    //std::cout<<js["infected"];
     jsonFile<<js;
 
 }
@@ -156,5 +171,12 @@ int Session::dequeueInfected() {
 }
 
 bool Session::isAllActiveOrIsolated() {
-    return g.isAllActiveOrIsolated();
+    return (g.isAllActiveOrIsolated() && isAllVirusActive());
+}
+
+bool Session::isAllVirusActive() {
+    for(auto agent: agents){
+        if((dynamic_cast<Virus*>(agent) != nullptr) && !(((Virus*)agent)->getActive())) return false;
+    }
+    return true;
 }

@@ -17,11 +17,11 @@ public:
     bool isInfected(int nodeInd);
 
     ///Rule of 5
-    //virtual ~Graph(); //destructor
-    Graph(const Graph &other); //copy constructor
-    Graph(const Graph &&other); //move constructor
-    const Graph &operator=(const Graph &other); //copy assignment operator
-    const Graph &operator=(const Graph &&other); //move assignment operator
+//    virtual ~Graph(); //destructor
+//    Graph(const Graph &other); //copy constructor
+//    Graph(Graph &&other); //move constructor
+//    const Graph &operator=(const Graph &other); //copy assignment operator
+//    const Graph &operator=(Graph &&other); //move assignment operator
 
 
 
@@ -46,6 +46,7 @@ private:
     ///Our data members
     int NUM_OF_NODES;
     std::vector<bool> infectedTracer;
+
 };
 
 #endif

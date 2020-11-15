@@ -11,8 +11,8 @@ public:
     ///Rule of 3
     virtual ~Agent(); //destructor
     virtual Agent *clone() const = 0;
-    //Agent(const Agent &other)=0; //copy constructor
-    //virtual const Agent& operator=(const Agent& other)=0; //copy assignment operator
+    //Agent(const Agent &other)=0; //copy constructor -DEFAULT
+    //virtual const Agent& operator=(const Agent& other)=0; //copy assignment operator -DEFAULT
 
     virtual void act(Session &session) = 0;
 };
@@ -23,10 +23,10 @@ public:
     ContactTracer();
 
     ///Rule of 5
-    //~ContactTracer(); //destructor
+    //~ContactTracer(); //destructor --INHERITED
     virtual ContactTracer *clone() const;
-    //ContactTracer(const ContactTracer &other); //copy constructor
-    //virtual const ContactTracer &operator=(const ContactTracer &other); //copy assignment operator
+    //ContactTracer(const ContactTracer &other); //copy constructor -DEFAULT
+    //virtual const ContactTracer &operator=(const ContactTracer &other); //copy assignment operator -DEFAULT
 
     virtual void act(Session &session);
 
@@ -38,16 +38,17 @@ public:
     Virus(int nodeInd);
 
     ///Rule of 5
-    ~Virus(); //destructor
-    Virus(const Virus &other); //copy constructor
+//    ~Virus(); //destructor --INHERITED
+//    Virus(const Virus &other); //copy constructor -DEFAULT
     virtual Virus *clone() const;
-    //virtual const Virus& operator=(const Virus& other); //copy assignment operator
+    //virtual const Virus& operator=(const Virus& other); //copy assignment operator -DEFAULT
 
     virtual void act(Session &session);
 
+    bool getActive() const;
+
 private:
     const int nodeInd;
-    ///Our data member
     bool isActive; //to know if the node is infected
 };
 

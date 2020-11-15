@@ -31,7 +31,7 @@ public:
     Session(const Session &other); //copy constructor
     Session(Session &&other); //move constructor
     const Session& operator=(const Session& other); //copy assignment operator
-    const Session& operator=(const Session&& other); //move assignment operator
+    const Session& operator=(Session&& other); //move assignment operator
 
     void enqueueInfected(int);
     int dequeueInfected(); //return -1 if empty
@@ -49,22 +49,18 @@ public:
 
     void infectNode(int node); //make a node active, calls to graph::infectNode
 
+    bool isAllVirusActive();
 
 private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
-
-
-    /// Our Data members
     int cycleCount;
     std::queue<int> infectedQueue;
 
-    ///our from/to JSon functions
+
     void fromJSON(const std::string &path); //read a json file from path, and build objects accordingly
     void toJson(); //write json file at "../output.json"
-
-    //void clearAgents();
 };
 
 #endif

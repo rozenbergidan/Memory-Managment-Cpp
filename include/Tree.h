@@ -2,7 +2,6 @@
 #define TREE_H_
 
 #include <vector>
-//#include "../include/Session.h"
 
 class Session;
 
@@ -27,8 +26,7 @@ public:
 
     virtual int traceTree() const = 0;
 
-    ///Out Functions
-    Tree* getLastChild(); //TODO: check in office hours if i should return const reffernce.
+    Tree* getLastChild();
     int getNode() const;
     void clear();// clear the children vector recurrcively;
     int getNumOfChild() const;
@@ -43,17 +41,16 @@ class CycleTree : public Tree {
 public:
     CycleTree(int rootLabel, int currCycle);
 
-    virtual int traceTree() const;
-
     ///Rule of 5
+    // destructor - inherited from tree
     CycleTree(const CycleTree &other); //copy constructor
-    //CycleTree(const CycleTree &&other); //move constructor
+    CycleTree(CycleTree &&other); //move constructor
     const CycleTree &operator=(const CycleTree &other);//copy assignment operator
     const CycleTree &operator=(CycleTree &&other);//move assignment operator
-    //delete - inherited from tree.
-
+    //Rule of 5 end.
 
     virtual CycleTree *clone() const;
+    virtual int traceTree() const;
 
 private:
     int currCycle;
@@ -64,24 +61,16 @@ class MaxRankTree : public Tree {
 public:
     MaxRankTree(int rootLabel);
 
-    virtual int traceTree() const;
-
-    //Rule of 5
+    ///Rule of 5
+    // destructor - inherited from tree
     MaxRankTree(const MaxRankTree &other); //copy constructor
-    // destructor - inherited from tree.
-    //copy assignment operator - inherited from tree.
-    //move assignment operator - inherited from tree.
+    MaxRankTree(MaxRankTree &&other);
+    const MaxRankTree &operator=(const MaxRankTree &other);//copy assignment operator - inherited from tree.
+    const MaxRankTree &operator=(MaxRankTree &&other);//move assignment operator - inherited from tree.
     //Rule of 5 end.
 
-
     virtual MaxRankTree *clone() const;
-
-private:
-    ///Our Function
-    const MaxRankTree *traceTreeRecursion(int currMax) const;// returns pointer to the node with most childrens that biger then currMax if exsist, and nullptr is not
-
-    MaxRankTree *traceTreeRecursion(MaxRankTree* currMaxPtr, int currMax, int currMaxDepth, int currDepth);// returns pointer to the node with most childrens that biger then currMax if exsist, and nullptr is not
-
+    virtual int traceTree() const;
 };
 
 //---------------------------------RootTree-------------------------------------------
@@ -89,13 +78,16 @@ class RootTree : public Tree {
 public:
     RootTree(int rootLabel);
 
-    virtual int traceTree() const;
+    ///Rule of 5
+    //virtual ~RootTree();// destructor - inherent from Tree
+    RootTree(const RootTree &other); //copy constructor
+    RootTree(RootTree &&other);
+    const RootTree& operator=(const RootTree& other);//copy assignment operator  inherent from Tree
+    const RootTree& operator=(RootTree&& other);
+    //Rule of 5 end.
 
-    ///Rule of 3
-    RootTree(const RootTree &other); //copy constructor ------ TODO: check if nesesary to override
-    //virtual ~RootTree();// destructor------ TODO: check if nesesary to override the destrudtor
-    //virtual const RootTree& operator=(const RootTree& other);//copy assignment operator ------ TODO: check if nesesary to override
     virtual RootTree *clone() const;
+    virtual int traceTree() const;
 };
 //--------------------------------------------------------------------------------------
 
